@@ -8,13 +8,16 @@
         <InputText name="Level" type="text" placeholder="Level" class="w-full sm:w-56" />
       </div>
       <div class="flex flex-col justify-center items-center gap-4">
-        <Select v-model="playbookSelected" :options="playbooks" optionLabel="name" placeholder="Playbook" class="w-full md:w-56" name="playbook"/>
-        
+        <Select v-model="playbookSelected" :options="playbooks" optionLabel="name" placeholder="Playbook"
+          class="w-full md:w-56" name="playbook" />
+
       </div>
-      <div class="flex flex-col justify-center items-center gap-4"  v-if="playbookSelected">
-        <Select v-model="manoeuvresSelected" options="{{manoeuvres[playbookSelected.value]}}" optionLabel="name" placeholder="Playbook" class="w-full md:w-56" name="playbook"/>
+      <div class="flex flex-col justify-center items-center gap-4" v-if="playbookSelected">
+        <Select v-model="manoeuvresSelected" :options="manoeuvres[playbookSelected.value]" optionLabel="name"
+          placeholder="Playbook" class="w-full md:w-56" name="playbook" />
       </div>
-      <Fieldset legend="Form States" class="h-80 overflow-auto">
+      <!-- <Editor v-model="skill" editorStyle="height: 320px" /> -->
+      <Fieldset legend="Form States" class="h-10 overflow-hidden">
         <pre class="whitespace-pre-wrap">{{ $form }}</pre>
       </Fieldset>
     </Form>
@@ -29,8 +32,9 @@
 // import FloatLabel from 'primevue/floatlabel';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
-import {Form} from '@primevue/forms';
+import { Form } from '@primevue/forms';
 import Select from 'primevue/select';
+// import Editor from 'primevue/editor';
 export default {
   name: 'CharacterFormular',
   props: {},
@@ -38,26 +42,37 @@ export default {
     return {
       // Initialisation du tableau 'value'
       value: "test", // Exemple avec quelques éléments,
-      initialValues : {username: "test"},
-      playbooks : [{ name: "yakuza", value : 0},
-      { name: "Policier", value : 1}],
-      manoeuvres : [{ 0 : [{name: "Flatter", value : 0},{name: "Divertir", value : 1},{name: "Charmer", value : 2}]},
-      { 1 : [{name: "Flatter", value : 0},{name: "Divertir", value : 1},{name: "Charmer", value : 2}]}],
-      playbookSelected : null,
-      manoeuvresSelected : null
+      initialValues: { username: "test" },
+      playbooks: [{ name: "yakuza", value: 0 },
+      { name: "Policier", value: 1 }],
+      manoeuvres: [
+        [
+          { name: "Flatter", value: 0 },
+          { name: "Divertir", value: 1 },
+          { name: "Charmer", value: 2 }
+        ],
+        [
+          { name: "Flotter", value: 0 },
+          { name: "Drov", value: 1 },
+          { name: "Chorb", value: 2 }
+        ]
+      ], playbookSelected: null,
+      manoeuvresSelected: [],
+      skill : null
     };
   },
   components: {
     InputText,
     Button,
     Select,
-    Form
+    Form,
+    // Editor
   },
   methods: {
     toggleDarkMode() {
       document.documentElement.classList.toggle('my-app-dark');
     },
-    onFormSubmit(){
+    onFormSubmit() {
       return true;
     }
   }
