@@ -57,7 +57,7 @@
         </div>
         <div class="preview">
           <div>
-            <div id="export-content" class="content">
+            <div id="export-content" class="content"> 
               <div class="borders">
                 <div class="border_top"></div>
                 <div class="border_bot"></div>
@@ -65,13 +65,28 @@
                 <div class="border_right"></div>
               </div>
 
-              <!-- Conteneur de l'image avec cadre rond -->
               <img class="cadre" src="@/assets/cadre.svg">
               <div class="image-container" @click="triggerFileInput">
                 <img v-if="imageSrc" :src="imageSrc" alt="Image téléchargée" class="uploaded-image" />
                 <span v-else class="placeholder-text">Cliquez pour ajouter une image</span>
               </div>
-
+              <img class="playbook-icon" :src="require('@/assets/'+playbookIcon+'.svg')">
+              <div class="editable-text" @click="editMode = true">
+              <!-- Si l'utilisateur est en mode édition -->
+              <input
+                v-if="editMode"
+                v-model="text"
+                type="text"
+                @blur="editMode = false"
+                @keyup.enter="editMode = false"
+                class="text-input"
+                ref="textInput"
+              />
+              <!-- Si l'utilisateur est en mode affichage -->
+              <span v-else>
+                {{ text || "Cliquez pour modifier" }}
+              </span>
+            </div>
             </div>
             <input style="display: none" ref="fileInput" type="file" @change="handleImageUpload" accept="image/*" />
             <Button type="submit" label="Sauvegarder" class="p-button-primary" @click="exportPdf" />
@@ -122,17 +137,18 @@ export default {
         techniques: "",
         inventory: "",
       },
-      isDropdownOpen: false, // Gérer l'état du dropdown (ouvert ou fermé)
-      imageSrc: null // L'image téléchargée par l'utilisateur
+      isDropdownOpen: false, 
+      imageSrc: null,
+      playbookIcon: "Musicien",
+      editMode: false, // Définit si l'utilisateur est en mode édition
+      text: "", // Contenu du champ texte
     };
   },
   components: {
     InputText,
     Button,
     Textarea,
-    InputNumber,
-    // DropdownWithImage
-    // Editor,
+    InputNumber
   },
   methods: {
     exportPdf() {
@@ -180,6 +196,15 @@ export default {
     },
     triggerFileInput() {
       this.$refs.fileInput.click();
+    },
+  },
+  watch : {
+    editMode(newValue) {
+      if (newValue) {
+        this.$nextTick(() => {
+          this.$refs.textInput.focus();
+        });
+      }
     },
   }
 }
@@ -370,5 +395,39 @@ svg {
   height: auto;
   aspect-ratio: 210 / 297; /* Maintient le ratio A4 */
   overflow: hidden; /* Empêche les débordements */
+}
+.playbook-icon{
+  position: absolute;
+  top: 230px;
+  left: 180px;
+  width: 10%;
+
+}
+
+.editable-text {
+  display: inline-block;
+  font-size: 16px;
+  color: #333;
+  cursor: text;
+  padding: 2px;
+  border: 1px dashed transparent; /* Ajoute une légère bordure invisible */
+  position: absolute;
+  top: 100px;
+  left: 400px;
+}
+
+.editable-text:hover {
+  border-color: lightgray; /* Montre une bordure lorsque la souris survole */
+}
+
+.text-input {
+  font-size: 16px;
+  color: #333;
+  border: none;
+  background: transparent;
+  outline: none; /* Supprime le contour au focus */
+  padding: 0;
+  margin: 0;
+  width: auto; /* Ajuste automatiquement la largeur */
 }
 </style>
