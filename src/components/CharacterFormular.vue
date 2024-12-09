@@ -1,104 +1,62 @@
 <template>
-  <div class="container">
-    <div class="character-sheet">
-      <h1>Fiche de Personnage</h1>
-      <form @submit.prevent="submitForm">
-        <div class="p-field">
-          <label for="name">Nom :</label>
-          <InputText id="name" v-model="character.name" placeholder="Entrez le nom" />
+  <form>
+    <div class="container">
+      <div id="export-content" class="content">
+        <div class="borders">
+          <div class="border_top"></div>
+          <div class="border_bot"></div>
+          <div class="border_left"></div>
+          <div class="border_right"></div>
         </div>
-        <div class="p-field">
-          <label for="origin">Origine :</label>
-          <InputText id="origin" v-model="character.origin" placeholder="Entrez l'origine" />
-        </div>
-        <div class="p-field">
-          <label for="exclusive-maneuvers">Manoeuvres Exclusives :</label>
-          <InputTextarea id="exclusive-maneuvers" v-model="character.exclusiveManeuvers" rows="4" cols="30"
-            placeholder="Décrivez les manœuvres" />
-        </div>
-        <div class="p-field">
-          <label>Stats :</label>
-          <div class="p-grid">
-            <div class="p-col-6" v-for="(value, stat) in character.stats" :key="stat">
-              <label :for="stat">{{ stat }} :</label>
-              <InputNumber :id="stat" v-model="character.stats[stat]" mode="decimal" />
-            </div>
-          </div>
-        </div>
-        <div class="p-field">
-          <label for="injuries">Blessures :</label>
-          <InputText id="injuries" v-model="character.injuries" placeholder="Décrivez les blessures" />
-        </div>
-        <div class="p-field">
-          <label for="heat">Chaleur :</label>
-          <InputNumber id="heat" v-model="character.heat" mode="decimal" />
-        </div>
-        <div class="p-field">
-          <label>Émotions :</label>
-          <div class="p-grid">
-            <div class="p-col-6" v-for="(value, emotion) in character.emotions" :key="emotion">
-              <label :for="emotion">{{ emotion }} :</label>
-              <InputNumber :id="emotion" v-model="character.emotions[emotion]" mode="decimal" />
-            </div>
-          </div>
-        </div>
-        <div class="p-field">
-          <label for="skills">Compétences :</label>
-          <Textarea id="skills" v-model="character.skills" rows="4" cols="30" placeholder="Décrivez les compétences" />
-        </div>
-        <div class="p-field">
-          <label for="techniques">Techniques :</label>
-          <Textarea id="techniques" v-model="character.techniques" rows="4" cols="30"
-            placeholder="Décrivez les techniques" />
-        </div>
-        <div class="p-field">
-          <label for="inventory">Inventaire :</label>
-          <Textarea id="inventory" v-model="character.inventory" rows="4" cols="30" placeholder="Listez l'inventaire" />
-        </div>
-        <div class="preview">
-          <div>
-            <div id="export-content" class="content">
-              <div class="borders">
-                <div class="border_top"></div>
-                <div class="border_bot"></div>
-                <div class="border_left"></div>
-                <div class="border_right"></div>
-              </div>
 
-              <img class="cadre" src="@/assets/cadre.svg">
-              <div class="image-container" @click="triggerFileInput">
-                <img v-if="imageSrc" :src="imageSrc" alt="Image téléchargée" class="uploaded-image" />
-                <span v-else class="placeholder-text">Cliquez pour ajouter une image</span>
-              </div>
-              <img class="playbook-icon" :src="require('@/assets/' + playbookIcon + '.svg')">
-              <div class="editable-text" @click="editMode = true">
-                <div class="custom-input">
-                  <svg width="300" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
-                    <rect x="1" y="1" width="298" height="38" rx="10" ry="10" fill="none" stroke="black"
-                      stroke-width="2" />
-                  </svg>
-                  <input v-model="name" type="text" class="text-input" />
-                </div>
-                <div class="custom-input">
-                  <svg width="300" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
-                    <rect x="1" y="1" width="298" height="38" rx="10" ry="10" fill="none" stroke="black"
-                      stroke-width="2" />
-                  </svg>
-                  <input v-model="origin" type="text" class="text-input" />
-                </div>
-              </div>
-              <input style="display: none" ref="fileInput" type="file" @change="handleImageUpload" accept="image/*" />
-            </div>
+        <img class="cadre" src="@/assets/cadre.svg">
+        <div class="image-container" @click="triggerFileInput">
+          <img v-if="imageSrc" :src="imageSrc" alt="Image téléchargée" class="uploaded-image" />
+          <span v-else class="placeholder-text">Cliquez pour ajouter une image</span>
+        </div>
+        <img class="playbook-icon" :src="require('@/assets/' + playbookIcon + '.svg')">
+        <div class="top-input-section">
+          <div class="normal-custom-input" id="name">
+            <svg width="300" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
+              <rect x="1" y="1" width="448" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+            </svg>
+            <label class="input_name">Nom: </label>
+            <input v-model="name" type="text" class="text-input input-large" placeholder="Nom du perso" />
           </div>
         </div>
-        <Button type="submit" label="Sauvegarder" class="p-button-primary" @click="exportPdf" />
-      </form>
+        <div class="bot-input-section">
+            <div class="normal-custom-input" id="origine">
+              <svg width="300" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
+                <rect x="1" y="1" width="248" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+              </svg>
+              <p class="input_name">Origine: </p>
+              <input v-model="origin" type="text" class="text-input input-medium" placeholder="Origine du perso" />
+            </div>
+            <div class="small-custom-input" id="lvl">
+              <svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
+                <rect x="1" y="1" width="98" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+              </svg>
+              <p class="input_name">Lvl:  </p>
+              <!-- <input v-model.number="level" type="text" class="text-input input-small" placeholder="0" /> -->
+            </div>
+            <div class="small-custom-input" id="xp">
+              <svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
+                <rect x="1" y="1" width="98" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+              </svg>
+              <p class="input_name">XP: </p>
+              <!-- <input v-model.number="xp" type="number" class="text-input input-small" placeholder="0"/> -->
+            </div>
+      </div>
+
+      <input style="display: none" ref="fileInput" type="file" @change="handleImageUpload" accept="image/*" />
     </div>
-  </div>
+    </div>
+    <Button label="Sauvegarder" class="p-button-primary" @click="exportPdf" />
+  </form>
 </template>
 
 <script>
-import { InputText, Textarea, InputNumber, Button } from "primevue";
+import { Button } from "primevue";
 import html2pdf from "html2pdf.js";
 export default {
   name: 'CharacterFormular',
@@ -138,27 +96,23 @@ export default {
       isDropdownOpen: false,
       imageSrc: null,
       playbookIcon: "Musicien",
-      editMode: false, // Définit si l'utilisateur est en mode édition
-      textName: "", // Contenu du champ Nom,
-      level: null, // Contenu du champ Lvl
+      textName: "", 
+      level: null, 
+      xp: "",
     };
   },
   components: {
-    InputText,
-    Button,
-    Textarea,
-    InputNumber
+    Button
   },
   methods: {
     exportPdf() {
       const element = document.getElementById("export-content");
-
       const options = {
         margin: [0, 0, 0, 0], // Ajoute une marge de 10mm
-        filename: "export.pdf",
+        filename: this.name+".pdf",
         image: { type: "jpeg", quality: 1 },
         html2canvas: {
-          scale: 2, // Augmente la résolution pour des SVG clairs
+          scale: 5, // Augmente la résolution pour des SVG clairs
           useCORS: true, // Gère les images externes si nécessaire
         },
         jsPDF: {
@@ -198,6 +152,16 @@ export default {
     },
   },
   watch: {
+    xp(value) {
+      if (value > 999) {
+        this.xp = 999; 
+      }
+    },
+    level(value) {
+      if (value > 10) {
+        this.level = 10; 
+      }
+    },
   }
 }
 </script>
@@ -206,10 +170,8 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  flex-direction: row;
-  height: 100vh;
-  margin: 0;
-  padding: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .content {
@@ -293,64 +255,10 @@ svg {
 .character-sheet {
   height: 100vh;
   max-width: 50vw;
-  margin: auto;
   padding: 20px;
   background: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.p-field {
-  margin-bottom: 1.5rem;
-}
-
-.p-grid {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.p-col-6 {
-  flex: 0 0 50%;
-  padding: 0.5rem;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-button {
-  padding: 10px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  width: 200px;
-  z-index: 1;
-}
-
-.dropdown-item {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.dropdown-item img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
-
-.dropdown-item:hover {
-  background-color: #f1f1f1;
 }
 
 .image-container {
@@ -370,7 +278,6 @@ svg {
 }
 
 .uploaded-image {
-  width: 100%;
   height: 100%;
   object-fit: cover;
   /* Assure que l'image couvre toute la zone sans déformation */
@@ -384,13 +291,11 @@ svg {
 
 #export-content {
   position: relative;
-  width: 100%;
   max-width: 210mm;
   /* Largeur pour un PDF A4 en portrait */
   height: auto;
   aspect-ratio: 210 / 297;
   /* Maintient le ratio A4 */
-  overflow: hidden;
   /* Empêche les débordements */
 }
 
@@ -399,45 +304,35 @@ svg {
   top: 230px;
   left: 180px;
   width: 10%;
-
 }
 
-.editable-text {
-  display: inline-block;
-  font-size: 16px;
-  color: #333;
-  cursor: text;
-  padding: 2px;
-  border: 1px dashed transparent;
-  position: absolute;
-  top: 100px;
-  left: 400px;
-}
-
-.editable-text:hover {
-  border-color: lightgray;
-  /* Montre une bordure lorsque la souris survole */
-}
-
-.text-input {
-  font-size: 16px;
-  color: #333;
-  border: none;
-  background: transparent;
-  outline: none;
-  padding: 0;
-  margin: 0;
-  width: auto;
-}
-
-.custom-input {
+#name {
   position: relative;
-  width: 300px;
+  width: 450px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: text;
+}
+#origine {
+  position: relative;
+  width: 250px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: text;
+}
+
+.small-custom-input {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  cursor: text;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .input-border {
@@ -449,33 +344,51 @@ svg {
 
 .text-input {
   position: absolute;
-  top: 4px;
-  left: 12px;
-  width: calc(100% - 24px);
-  /* Laisse un espace entre le cadre et l'input */
-  height: calc(100% - 8px);
-  /* Adapte la taille pour qu'elle corresponde au cadre */
+  top: 0;
+  left: 0;
+  z-index: 2;
+  height: 100%; /* Pour correspondre à la hauteur du parent */
   border: none;
   outline: none;
-  font-size: 14px;
-  z-index: 2;
   background: transparent;
-  font-family: Arial, sans-serif;
+  font-family: Edo;
+  padding: 10px 40px; /* Ajustez pour aligner avec le contenu du SVG */
+  font-size: 16px; /* Ajustez selon vos besoins */
+}
+.input-large{
+  width: 350px;
+  left: 30px;
+}
+.input-small{
+  width: 140px;
+}
+.input-medium{
+  width: 200px;
+  left: 30px;
 }
 
-.text-span {
+.top-input-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   position: absolute;
-  top: 0;
-  left: 12px;
-  width: calc(100% - 24px);
-  /* Pour s'aligner avec la largeur de l'input */
-  height: 100%;
-  /* S'aligne sur la hauteur du conteneur */
-  line-height: 40px;
-  /* Égale à la hauteur du conteneur */
-  font-size: 14px;
-  z-index: 2;
-  color: #333;
-  font-family: Arial, sans-serif;
+  top: 100px;
+  right: 50px;
+}
+
+.bot-input-section {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  top: 150px;
+  right: 50px;
+  
+}
+.input_name{
+  position: absolute;
+  left: 5px;
+  font-family: Edo;
 }
 </style>

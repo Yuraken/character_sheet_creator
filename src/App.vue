@@ -22,4 +22,8 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+@font-face {
+    font-family: Edo;
+    src: url('~@/assets/edosz.ttf');
+}
 </style>
