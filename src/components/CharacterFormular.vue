@@ -14,7 +14,13 @@
           <img v-if="imageSrc" :src="imageSrc" alt="Image téléchargée" class="uploaded-image" />
           <span v-else class="placeholder-text">Cliquez pour ajouter une image</span>
         </div>
-        <img class="playbook-icon" :src="require('@/assets/' + playbookIcon + '.svg')">
+        <!-- L'élément cliquable -->
+        <img class="playbook-icon" :src="require('@/assets/' + selectedPlaybook.value + '.svg')" @click="openDropdown"
+          alt="Playbook Icon" />
+
+        <!-- Le composant Dropdown de PrimeVue -->
+        <Dropdown class="playbook-icon" ref="dropdown" v-model="selectedPlaybook" :options="playbooks" optionLabel="label"
+          style="display: none;" />
         <div class="top-input-section">
           <div class="normal-custom-input" id="name">
             <svg width="300" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
@@ -25,31 +31,36 @@
           </div>
         </div>
         <div class="bot-input-section">
-            <div class="normal-custom-input" id="origine">
-              <svg width="300" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
-                <rect x="1" y="1" width="248" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
-              </svg>
-              <p class="input_name">Origine: </p>
-              <input v-model="origin" type="text" class="text-input input-medium" placeholder="Origine du perso" />
-            </div>
-            <div class="small-custom-input" id="lvl">
-              <svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
-                <rect x="1" y="1" width="98" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
-              </svg>
-              <p class="input_name">Lvl:  </p>
-              <!-- <input v-model.number="level" type="text" class="text-input input-small" placeholder="0" /> -->
-            </div>
-            <div class="small-custom-input" id="xp">
-              <svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
-                <rect x="1" y="1" width="98" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
-              </svg>
-              <p class="input_name">XP: </p>
-              <!-- <input v-model.number="xp" type="number" class="text-input input-small" placeholder="0"/> -->
-            </div>
+          <div class="normal-custom-input" id="origine">
+            <svg width="300" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
+              <rect x="1" y="1" width="248" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+            </svg>
+            <p class="input_name">Origine: </p>
+            <input v-model="origin" type="text" class="text-input input-medium" placeholder="Origine du perso" />
+          </div>
+          <div class="small-custom-input" id="lvl">
+            <svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
+              <rect x="1" y="1" width="98" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+            </svg>
+            <p class="input_name">Lvl: </p>
+            <!-- <input v-model.number="level" type="text" class="text-input input-small" placeholder="0" /> -->
+          </div>
+          <div class="small-custom-input" id="xp">
+            <svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
+              <rect x="1" y="1" width="98" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+            </svg>
+            <p class="input_name">XP: </p>
+            <!-- <input v-model.number="xp" type="number" class="text-input input-small" placeholder="0"/> -->
+          </div>
+        </div>
+        <div class="stat-section">
+          <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="stat-section-svg">
+              <rect x="1" y="1" width="180mm" height="60mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+          </svg>
+          <p class="stats title">Stats :</p>
+        </div>
+        <input style="display: none" ref="fileInput" type="file" @change="handleImageUpload" accept="image/*" />
       </div>
-
-      <input style="display: none" ref="fileInput" type="file" @change="handleImageUpload" accept="image/*" />
-    </div>
     </div>
     <Button label="Sauvegarder" class="p-button-primary" @click="exportPdf" />
   </form>
@@ -58,6 +69,7 @@
 <script>
 import { Button } from "primevue";
 import html2pdf from "html2pdf.js";
+import { Dropdown } from 'primevue';
 export default {
   name: 'CharacterFormular',
   props: {
@@ -95,21 +107,27 @@ export default {
       },
       isDropdownOpen: false,
       imageSrc: null,
-      playbookIcon: "Musicien",
-      textName: "", 
-      level: null, 
+      textName: "",
+      level: null,
       xp: "",
+      selectedPlaybook: { label: 'Musicien', value: 'Musicien' }, // Valeur sélectionnée
+      playbooks: [ 
+        { label: 'Musicien', value: 'Musicien' },
+        { label: 'Yakuza', value: 'Yakuza' },
+        { label: 'Hotesse', value: 'Hotesse' }
+      ],
     };
   },
   components: {
-    Button
+    Button,
+    Dropdown
   },
   methods: {
     exportPdf() {
       const element = document.getElementById("export-content");
       const options = {
         margin: [0, 0, 0, 0], // Ajoute une marge de 10mm
-        filename: this.name+".pdf",
+        filename: this.name + ".pdf",
         image: { type: "jpeg", quality: 1 },
         html2canvas: {
           scale: 5, // Augmente la résolution pour des SVG clairs
@@ -150,16 +168,20 @@ export default {
     triggerFileInput() {
       this.$refs.fileInput.click();
     },
+    openDropdown() {
+      // Ouvre le menu Dropdown via sa référence
+      this.$refs.dropdown.show();
+    }
   },
   watch: {
     xp(value) {
       if (value > 999) {
-        this.xp = 999; 
+        this.xp = 999;
       }
     },
     level(value) {
       if (value > 10) {
-        this.level = 10; 
+        this.level = 10;
       }
     },
   }
@@ -315,6 +337,7 @@ svg {
   justify-content: center;
   cursor: text;
 }
+
 #origine {
   position: relative;
   width: 250px;
@@ -347,22 +370,28 @@ svg {
   top: 0;
   left: 0;
   z-index: 2;
-  height: 100%; /* Pour correspondre à la hauteur du parent */
+  height: 100%;
+  /* Pour correspondre à la hauteur du parent */
   border: none;
   outline: none;
   background: transparent;
   font-family: Edo;
-  padding: 10px 40px; /* Ajustez pour aligner avec le contenu du SVG */
-  font-size: 16px; /* Ajustez selon vos besoins */
+  padding: 10px 40px;
+  /* Ajustez pour aligner avec le contenu du SVG */
+  font-size: 16px;
+  /* Ajustez selon vos besoins */
 }
-.input-large{
+
+.input-large {
   width: 350px;
   left: 30px;
 }
-.input-small{
+
+.input-small {
   width: 140px;
 }
-.input-medium{
+
+.input-medium {
   width: 200px;
   left: 30px;
 }
@@ -384,11 +413,43 @@ svg {
   align-items: center;
   top: 150px;
   right: 50px;
-  
+
 }
-.input_name{
+
+.input_name {
   position: absolute;
   left: 5px;
   font-family: Edo;
+}
+.playbook-dropdown{
+  position: absolute;
+  top: 230px;
+  left: 180px;
+}
+.stat-section-svg{
+  top:85mm;
+  left: 15mm;
+}
+.stat-section{
+  position: absolute;
+  top:85mm;
+  left: 15mm;
+  height: 61mm;
+  width: 181mm;
+  z-index: 3;
+}
+.force{
+  top: 10px;
+  left: 10px;
+}
+.stats{
+  position: absolute;
+  font-family: Edo;
+  font-size: 25px;
+}
+.title{
+  top: -10px;
+  left: 10px;
+  
 }
 </style>
