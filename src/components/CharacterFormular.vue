@@ -19,8 +19,8 @@
           alt="Playbook Icon" />
 
         <!-- Le composant Dropdown de PrimeVue -->
-        <Dropdown class="playbook-icon" ref="dropdown" v-model="selectedPlaybook" :options="playbooks" optionLabel="label"
-          style="display: none;" />
+        <Dropdown class="playbook-icon" ref="dropdown" v-model="selectedPlaybook" :options="playbooks"
+          optionLabel="label" style="display: none;" />
         <div class="top-input-section">
           <div class="normal-custom-input" id="name">
             <svg width="300" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
@@ -30,7 +30,7 @@
             <input v-model="name" type="text" class="text-input input-large" placeholder="Nom du perso" />
           </div>
         </div>
-        <div class="bot-input-section">
+        <div class="mid-input-section">
           <div class="normal-custom-input" id="origine">
             <svg width="300" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
               <rect x="1" y="1" width="248" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
@@ -53,11 +53,35 @@
             <!-- <input v-model.number="xp" type="number" class="text-input input-small" placeholder="0"/> -->
           </div>
         </div>
+        <div class="bot-input-section">
+          <span style="font-family: edo; font-size: 25px">Blessures :</span>
+          <svg width="5mm" height="5mm" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
+          </svg>
+        </div>
         <div class="stat-section">
           <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="stat-section-svg">
-              <rect x="1" y="1" width="180mm" height="60mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+            <rect x="1" y="1" width="180mm" height="70mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
           </svg>
           <p class="stats title">Stats :</p>
+          <span class="force"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <p class="stats">Force ( )></p>
+          </span>
+          <span class="endu"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <p class="stats">Endurance ( )></p>
+          </span>
+          <span class="vol"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <p class="stats">Volonté ( )></p>
+          </span>
+          <span class="agi"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <p class="stats">Agilité ( )></p>
+          </span>
+          <span class="intel"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <p class="stats">Intelligence ( )></p>
+          </span>
+          <span class="style"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <p class="stats">Style ( )></p>
+          </span>
         </div>
         <input style="display: none" ref="fileInput" type="file" @change="handleImageUpload" accept="image/*" />
       </div>
@@ -111,7 +135,7 @@ export default {
       level: null,
       xp: "",
       selectedPlaybook: { label: 'Musicien', value: 'Musicien' }, // Valeur sélectionnée
-      playbooks: [ 
+      playbooks: [
         { label: 'Musicien', value: 'Musicien' },
         { label: 'Yakuza', value: 'Yakuza' },
         { label: 'Hotesse', value: 'Hotesse' }
@@ -323,8 +347,8 @@ svg {
 
 .playbook-icon {
   position: absolute;
-  top: 230px;
-  left: 180px;
+  top: 60mm;
+  left: 55mm;
   width: 10%;
 }
 
@@ -401,8 +425,19 @@ svg {
   align-items: center;
   justify-content: space-evenly;
   position: absolute;
+  top: 50px;
+  right: 50px;
+}
+
+.mid-input-section {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
   top: 100px;
   right: 50px;
+
 }
 
 .bot-input-section {
@@ -421,35 +456,86 @@ svg {
   left: 5px;
   font-family: Edo;
 }
-.playbook-dropdown{
+
+.playbook-dropdown {
   position: absolute;
   top: 230px;
   left: 180px;
 }
-.stat-section-svg{
-  top:85mm;
+
+.stat-section-svg {
+  top: 85mm;
   left: 15mm;
 }
-.stat-section{
+
+.stat-section {
   position: absolute;
-  top:85mm;
+  top: 85mm;
   left: 15mm;
-  height: 61mm;
+  height: 71mm;
   width: 181mm;
   z-index: 3;
 }
-.force{
-  top: 10px;
-  left: 10px;
+
+.force {
+  position: absolute;
+  top: 10mm;
+  left: 25mm;
+  width: 100%;
 }
-.stats{
+
+.endu {
+  position: absolute;
+  top: 25mm;
+  left: 25mm;
+  width: 100%;
+}
+
+.vol {
+  position: absolute;
+  top: 40mm;
+  left: 25mm;
+  width: 100%;
+}
+
+.agi {
+  position: absolute;
+  top: 10mm;
+  left: 110mm;
+  width: 100%;
+}
+
+.intel {
+  position: absolute;
+  top: 25mm;
+  left: 110mm;
+  width: 100%;
+}
+
+.style {
+  position: absolute;
+  top: 40mm;
+  left: 110mm;
+  width: 100%;
+}
+
+.stats {
   position: absolute;
   font-family: Edo;
-  font-size: 25px;
-}
-.title{
-  top: -10px;
+  font-size: 30px;
   left: 10px;
-  
+}
+
+.title {
+  top: -5mm;
+  left: 5mm;
+}
+
+.stats-cadre {
+  width: 10mm;
+  height: 10mm;
+  position: absolute;
+  left: -10mm;
+  top: 8mm;
 }
 </style>
