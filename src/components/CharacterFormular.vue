@@ -19,7 +19,7 @@
           alt="Playbook Icon" />
 
         <!-- Le composant Dropdown de PrimeVue -->
-        <Dropdown class="playbook-icon" ref="dropdown" v-model="selectedPlaybook" :options="playbooks"
+        <Dropdown ref="dropdown" v-model="selectedPlaybook" :options="playbooks"
           optionLabel="label" style="display: none;" />
         <div class="top-input-section">
           <div class="normal-custom-input" id="name">
@@ -43,19 +43,31 @@
               <rect x="1" y="1" width="98" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
             </svg>
             <p class="input_name">Lvl: </p>
-            <!-- <input v-model.number="level" type="text" class="text-input input-small" placeholder="0" /> -->
+            <input v-model.number="level" type="number" class="text-input input-small" />
           </div>
           <div class="small-custom-input" id="xp">
             <svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
               <rect x="1" y="1" width="98" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
             </svg>
             <p class="input_name">XP: </p>
-            <!-- <input v-model.number="xp" type="number" class="text-input input-small" placeholder="0"/> -->
+            <input v-model.number="xp" type="number" class="text-input input-small" />
           </div>
         </div>
         <div class="bot-input-section">
           <span style="font-family: edo; font-size: 25px">Blessures :</span>
-          <svg width="5mm" height="5mm" xmlns="http://www.w3.org/2000/svg">
+          <svg width="5mm" class="life" height="5mm" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
+          </svg>
+          <svg width="5mm" class="life" height="5mm" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
+          </svg>
+          <svg width="5mm" class="life" height="5mm" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
+          </svg>
+          <svg width="5mm" class="life" height="5mm" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
+          </svg>
+          <svg width="5mm" class="life" height="5mm" xmlns="http://www.w3.org/2000/svg">
             <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
           </svg>
         </div>
@@ -447,8 +459,9 @@ svg {
   justify-content: space-around;
   align-items: center;
   top: 150px;
-  right: 50px;
-
+  right: 100px;
+  height: 5mm;
+  width: 100mm;
 }
 
 .input_name {
@@ -537,5 +550,10 @@ svg {
   position: absolute;
   left: -10mm;
   top: 8mm;
+}
+
+.life {
+  height: 6mm;
+  width: 6mm;
 }
 </style>
