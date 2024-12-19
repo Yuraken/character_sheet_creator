@@ -19,8 +19,8 @@
           alt="Playbook Icon" />
 
         <!-- Le composant Dropdown de PrimeVue -->
-        <Dropdown ref="dropdown" v-model="selectedPlaybook" :options="playbooks"
-          optionLabel="label" style="display: none;" />
+        <Dropdown ref="dropdown" v-model="selectedPlaybook" :options="playbooks" optionLabel="label"
+          style="display: none;" />
         <div class="top-input-section">
           <div class="normal-custom-input" id="name">
             <svg width="300" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
@@ -54,22 +54,78 @@
           </div>
         </div>
         <div class="bot-input-section">
-          <span style="font-family: edo; font-size: 25px">Blessures :</span>
-          <svg width="5mm" class="life" height="5mm" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
-          </svg>
-          <svg width="5mm" class="life" height="5mm" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
-          </svg>
-          <svg width="5mm" class="life" height="5mm" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
-          </svg>
-          <svg width="5mm" class="life" height="5mm" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
-          </svg>
-          <svg width="5mm" class="life" height="5mm" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
-          </svg>
+          <div class="injuries">
+            <span style="font-family: edo; font-size: 25px">Blessures :</span>
+            <svg width="5mm" height="5mm" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
+            </svg>
+            <svg width="5mm" height="5mm" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
+            </svg>
+            <svg width="5mm" height="5mm" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
+            </svg>
+            <svg width="5mm" height="5mm" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
+            </svg>
+            <svg width="5mm" height="5mm" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
+            </svg>
+          </div>
+          <div class="heat">
+            <span style="font-family: edo; font-size: 25px">Chaleur :</span>
+            <span style="font-family: edo; font-size: 25px">/3</span>
+          </div>
+          <div class="states">
+            <div>
+              <p style="font-size: 17px">
+                Colère :
+              </p>
+              <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+              </svg>
+            </div>
+            <div>
+              <p style="font-size: 17px">
+                Joie :
+              </p>
+              <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+              </svg>
+            </div>
+            <div>
+              <p style="font-size: 17px">
+                Peur :
+              </p>
+              <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+              </svg>
+            </div>
+            <div>
+              <p style="font-size: 17px">
+                Tristesse :
+              </p>
+              <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+              </svg>
+            </div>
+            <div>
+              <p style="font-size: 17px">
+                Sérénité :
+              </p>
+              <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+              </svg>
+            </div>
+            <div>
+              <p style="font-size: 17px">
+                Surprise :
+              </p>
+              <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+              </svg>
+            </div>
+          </div>
         </div>
         <div class="stat-section">
           <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="stat-section-svg">
@@ -454,14 +510,11 @@ svg {
 
 .bot-input-section {
   position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
   top: 150px;
   right: 100px;
   height: 5mm;
   width: 100mm;
+  font-family: edo;
 }
 
 .input_name {
@@ -552,8 +605,43 @@ svg {
   top: 8mm;
 }
 
-.life {
+.injuries>svg {
   height: 6mm;
   width: 6mm;
+}
+
+.injuries {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.heat {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  align-items: center;
+  align-self: flex-start;
+}
+
+.states {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.states>div>svg {
+  height: 4mm;
+  width: 4mm;
+}
+
+.states>div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
 }
 </style>
