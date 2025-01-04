@@ -133,21 +133,28 @@
           </svg>
           <p class="stats title">Stats :</p>
           <span class="force"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="stats">Force ( )></p>
           </span>
           <span class="endu"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="stats">Endurance ( )></p>
           </span>
           <span class="vol"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="stats">Volonté ( )></p>
           </span>
           <span class="agi"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+          
+            <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="stats">Agilité ( )></p>
           </span>
           <span class="intel"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="stats">Intelligence ( )></p>
           </span>
           <span class="style"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+            <input v-model.number="stats" type="number" class="stat-input input-small"/>
             <p class="stats">Style ( )></p>
           </span>
         </div>
@@ -175,14 +182,7 @@ export default {
         name: "",
         origin: "",
         exclusiveManeuvers: "",
-        stats: {
-          force: 0,
-          agility: 0,
-          endurance: 0,
-          intelligence: 0,
-          willpower: 0,
-          style: 0,
-        },
+        stats: "",
         injuries: "",
         heat: 0,
         emotions: {
@@ -274,6 +274,11 @@ export default {
     level(value) {
       if (value > 10) {
         this.level = 10;
+      }
+    },
+    stats(value) {
+      if (value > 3) {
+        this.stats = 3;
       }
     },
   }
@@ -472,6 +477,18 @@ svg {
   /* Ajustez pour aligner avec le contenu du SVG */
   font-size: 16px;
   /* Ajustez selon vos besoins */
+}
+.stat-input {
+  position: absolute;
+    top: 38px;
+    left: -25px;
+    z-index: 3;
+    height: 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: Edo;
+    font-size: 22px;
 }
 
 .input-large {

@@ -1,0 +1,7 @@
+{
+    "apiBaseUrl": "https://api.example.com",
+    "appName": "MonApplicationVue3",
+    "featureFlags": {
+      "enableFeatureX": true
+    }
+}
