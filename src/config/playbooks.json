@@ -1,0 +1,60 @@
+{
+  "playbooks": [
+    { "label": "Musicien", "value": "musicien" },
+    { "label": "Yakuza", "value": "yakuza" },
+    { "label": "Hotesse", "value": "host" },
+    { "label": "SDF", "value": "sdf" },
+    { "label": "Policier", "value": "policier" },
+    { "label": "Ouvrier", "value": "ouvrier" },
+    { "label": "Salaryman", "value": "salaryman" },
+    { "label": "Journaliste", "value": "journaliste" }
+],
+"journaliste": {
+    "firstManeuverTitle": "Investiguer",
+    "firstManeuverContent": "<p>Quand vous enquêtez sur un sujet, un événement ou un fait, lancez <strong>+Intelligence</strong>.</p><ul><li>Sur un 10+ : vous obtenez des informations fiables, pertinentes et exclusives, et vous pouvez poser une question au MJ sur ce que vous avez trouvé.</li><li>Sur un 7-9 : vous obtenez des informations fiables, pertinentes et exclusives, mais il y a un risque ou un coût. Le sujet peut être dangereux, sensible ou controversé.</li><li>Sur un échec : vous n’obtenez pas d’informations utiles, et vous vous exposez à un danger ou à une complication.</li></ul>",
+    "secondManeuverTitle": "Interviewer",
+    "secondManeuverContent": "<p>Quand vous interviewez quelqu’un pour obtenir son témoignage, son avis ou son expertise, lancez <strong>+Volonté</strong>.</p><ul><li>Sur un 10+ : il vous dit ce que vous voulez savoir, à condition que vous lui garantissiez quelque chose en retour.</li><li>Sur un 7-9 : il vous dit ce que vous voulez savoir, mais il vous demande quelque chose de plus ou de différent que ce que vous aviez prévu.</li><li>Sur un échec : il ne vous dit pas ce que vous voulez savoir, et il vous rejette ou vous dénonce.</li></ul>"
+},
+  "yakuza": {
+    "firstManeuverTitle": "Intimider",
+    "firstManeuverContent": "<p>Quand vous extorquez quelqu’un pour qu’il vous donne de l’argent, des informations ou des faveurs, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : il vous donnera ce que vous voulez, à condition que vous lui laissiez une porte de sortie.</li><li>Sur un 7-9 : il vous donnera ce que vous voulez, mais il vous demande quelque chose en retour, ou il vous met une condition.</li><li>Sur un échec : il ne cède pas, et il vous dénonce ou vous attaque.</li></ul>",
+    "secondManeuverTitle": "Fidéliser",
+    "secondManeuverContent": "<p>Quand vous fidélisez quelqu’un en lui montrant votre respect, votre loyauté ou votre sacrifice, lancez <strong>+Volonté</strong>.</p><ul><li>Sur un 10+ : il devient votre allié, votre ami ou votre subordonné, et il vous aide, vous soutient ou vous suit.</li><li>Sur un 7-9 : il devient votre associé, votre contact ou votre indic, et il vous aide, vous soutient ou vous suit, mais il vous demande quelque chose en échange, ou il vous met une condition.</li><li>Sur un échec : il devient votre rival, votre ennemi ou un faux-ami, vous déteste ou vous combat.</li></ul>"
+  },
+  "host": {
+    "firstManeuverTitle": "Flatter",
+    "firstManeuverContent": "<p>Quand vous flattez quelqu’un pour qu’il vous apprécie, vous écoute ou vous donne quelque chose, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : il fait ce que vous voulez, à condition que vous lui fassiez un compliment sincère.</li><li>Sur un 7-9 : il fait ce que vous voulez, mais il vous demande quelque chose en retour, ou il vous met une condition.</li><li>Sur un échec : il ne fait pas ce que vous voulez, et il vous méprise ou vous ignore.</li></ul>",
+    "secondManeuverTitle": "Divertir",
+    "secondManeuverContent": "<p>Quand vous divertissez quelqu’un avec une histoire, une blague, une chanson ou un jeu, lancez <strong>+Chaleur</strong>.</p><ul><li>Sur un 10+ : vous le faites rire, sourire ou pleurer, et vous pouvez choisir un effet supplémentaire parmi les suivants : gagner de l’argent, des informations ou des faveurs, influencer son humeur, son opinion ou son comportement.</li><li>Sur un 7-9 : vous le faites rire, sourire ou pleurer, mais il y a un risque ou un coût. Vous pouvez être interrompu, critiqué ou jalousé.</li><li>Sur un échec : vous ne le divertissez pas, et vous vous exposez à un danger ou à une complication.</li></ul>"
+  },
+  "sdf": {
+    "firstManeuverTitle": "Mendier",
+    "firstManeuverContent": "<p>Quand vous mendiez de l’argent, de la nourriture ou de l’aide à quelqu’un, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : il fait ce que vous voulez, à condition que vous lui fassiez un geste de gratitude.</li><li>Sur un 7-9 : il fait ce que vous voulez, mais il vous demande quelque chose en retour, ou il vous met une condition.</li><li>Sur un échec : il ne fait pas ce que vous voulez, et il vous méprise ou vous chasse.</li></ul>",
+    "secondManeuverTitle": "Fouiller",
+    "secondManeuverContent": "<p>Quand vous fouillez une poubelle, un conteneur ou un tas d’ordures, lancez <strong>+Intelligence</strong>.</p><ul><li>Sur un 10+ : vous trouvez quelque chose d’utile, de précieux ou de surprenant, et vous pouvez choisir un effet supplémentaire parmi les suivants : trouver un autre objet, partager l’objet avec quelqu’un, augmenter la puissance ou l’effet de l’objet, ou économiser l’objet.</li><li>Sur un 7-9 : vous trouvez quelque chose d’utile, de précieux ou de surprenant, mais il y a un risque ou un coût. L’objet peut être sale, cassé, dangereux, illégal, etc.</li><li>Sur un échec : vous ne trouvez rien d’utile, et vous vous exposez à un danger ou à une complication.</li></ul>"
+  },
+  "policier": {
+    "firstManeuverTitle": "Questionner",
+    "firstManeuverContent": "<p>Quand vous interrogez quelqu’un pour obtenir des informations, des aveux ou des pistes, lancez <strong>+Intelligence</strong>.</p><ul><li>Sur un 10+ : il vous dit ce que vous voulez savoir, à condition que vous lui offriez quelque chose en retour.</li><li>Sur un 7-9 : il vous dit ce que vous voulez savoir, mais il vous ment, vous cache quelque chose ou vous met une condition.</li><li>Sur un échec : il ne vous dit pas ce que vous voulez savoir, et il vous insulte, vous provoque ou vous attaque.</li></ul>",
+    "secondManeuverTitle": "Filer",
+    "secondManeuverContent": "<p>Quand vous filez quelqu’un pour le suivre, le surveiller ou le piéger, lancez <strong>+Agilité</strong>.</p><ul><li>Sur un 10+ : vous réussissez à le filer sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : découvrir un indice, un secret ou une preuve, éviter ou anticiper un obstacle, un piège ou une attaque, impressionner, intimider ou provoquer quelqu’un, ou gagner de l’expérience.</li><li>Sur un 7-9 : vous réussissez à le filer, mais vous subissez un coût ou un inconvénient. Vous pouvez être repéré, distancé ou mis en danger.</li><li>Sur un échec : vous ne réussissez pas à le filer, et vous subissez les conséquences.</li></ul>"
+  },
+  "ouvrier": {
+    "firstManeuverTitle": "Réparer",
+    "firstManeuverContent": "<p>Quand vous réparez un objet, une machine ou un véhicule, lancez <strong>+Intelligence</strong>.</p><ul><li>Sur un 10+ : vous réussissez à le réparer sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : augmenter la puissance ou l’effet de l’objet, partager l’objet avec quelqu’un ou économiser l’objet.</li><li>Sur un 7-9 : vous réussissez à le réparer, mais il y a un risque ou un coût. L’objet peut être instable, bruyant, dangereux, illégal, etc.</li><li>Sur un échec : vous ne réussissez pas à le réparer, et vous vous exposez à un danger ou à une complication.</li></ul>",
+    "secondManeuverTitle": "Fabriquer",
+    "secondManeuverContent": "<p>Quand vous fabriquez un objet, une machine ou un véhicule, lancez <strong>+Force</strong>.</p><ul><li>Sur un 10+ : vous réussissez à le fabriquer sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : augmenter la puissance ou l’effet de l’objet, partager l’objet avec quelqu’un ou économiser l’objet.</li><li>Sur un 7-9 : vous réussissez à le fabriquer, mais il y a un risque ou un coût. L’objet peut être imparfait, fragile, encombrant, rare, etc.</li><li>Sur un échec : vous ne réussissez pas à le fabriquer, et vous vous exposez à un danger ou à une complication.</li></ul>"
+  },
+  "musicien": {
+    "firstManeuverTitle": "Jouer",
+    "firstManeuverContent": "<p>Quand vous jouez un morceau pour divertir, séduire ou défier quelqu’un, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : vous réussissez à le jouer sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : gagner de la notoriété, de l’argent ou des contacts, influencer l’ambiance ou l’atmosphère d’un lieu, déclencher une réaction ou une conséquence.</li><li>Sur un 7-9 : vous réussissez à le jouer, mais il y a un risque ou un coût. Vous pouvez être dépassé, éclipsé ou contesté.</li><li>Sur un échec : vous ne réussissez pas à le jouer, et vous subissez les conséquences.</li></ul>",
+    "secondManeuverTitle": "Accompagner",
+    "secondManeuverContent": "<p>Quand vous accompagnez quelqu’un avec votre musique pour le soutenir, le renforcer ou le guérir, lancez <strong>+Volonté</strong>.</p><ul><li>Sur un 10+ : vous réussissez à l’accompagner sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : augmenter la puissance ou l’effet de son action, partager son succès ou son échec, influencer son humeur, son opinion ou son comportement, déclencher une réaction ou une conséquence.</li><li>Sur un 7-9 : vous réussissez à l’accompagner, mais il y a un risque ou un coût. Vous pouvez être distrait, épuisé ou blessé.</li><li>Sur un échec : vous ne réussissez pas à l’accompagner, et vous subissez les conséquences.</li></ul>"
+  },
+  "salaryman": {
+    "firstManeuverTitle": "Marchander",
+    "firstManeuverContent": "<p>Quand vous marchandez avec quelqu’un pour obtenir un meilleur prix, une meilleure qualité ou une meilleure quantité, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : vous obtenez exactement ce que vous voulez sans concessions.</li><li>Sur un 7-9 : vous parvenez à un accord, mais il y a un compromis ou une concession mineure.</li><li>Sur un échec : la négociation échoue et peut entraîner des conséquences imprévues.</li></ul>",
+    "secondManeuverTitle": "Évaluer",
+    "secondManeuverContent": "<p>Quand vous évaluez la valeur, la qualité ou la fiabilité d’un objet, d’un service ou d’une information, lancez <strong>+Intelligence</strong>.</p><ul><li>Sur un 10+ : vous obtenez des informations précises, utiles et exclusives, et vous pouvez poser une question au MJ sur ce que vous avez trouvé.</li><li>Sur un 7-9 : vous obtenez des informations précises, utiles et exclusives, mais il y a un risque ou un coût. Vous pouvez être espionné, concurrencé ou régulé.</li><li>Sur un échec : votre évaluation est erronée, menant à une perte de temps et de ressources.</li></ul>"
+  }
+}

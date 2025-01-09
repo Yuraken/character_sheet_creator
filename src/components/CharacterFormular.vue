@@ -1,7 +1,7 @@
 <template>
   <form>
-    <div class="container">
-      <div id="export-content" class="content">
+    <div id="export-content" class="container">
+      <div class="content">
         <div class="borders">
           <div class="border_top"></div>
           <div class="border_bot"></div>
@@ -14,11 +14,10 @@
           <img v-if="imageSrc" :src="imageSrc" alt="Image téléchargée" class="uploaded-image" />
           <span v-else class="placeholder-text">Cliquez pour ajouter une image</span>
         </div>
-        <!-- L'élément cliquable -->
+
         <img class="playbook-icon" :src="require('@/assets/' + selectedPlaybook.value + '.svg')" @click="openDropdown"
           alt="Playbook Icon" />
 
-        <!-- Le composant Dropdown de PrimeVue -->
         <Dropdown ref="dropdown" v-model="selectedPlaybook" :options="playbooks" optionLabel="label"
           style="display: none;" />
         <div class="top-input-section">
@@ -131,34 +130,70 @@
           <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="stat-section-svg">
             <rect x="1" y="1" width="180mm" height="70mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
           </svg>
-          <p class="stats title">Stats :</p>
+          <p class="edo title">Stats :</p>
           <span class="force"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
             <input v-model.number="stats" type="number" class="stat-input input-small" />
-            <p class="stats">Force ( )></p>
+            <p class="edo">Force ( )></p>
           </span>
           <span class="endu"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
             <input v-model.number="stats" type="number" class="stat-input input-small" />
-            <p class="stats">Endurance ( )></p>
+            <p class="edo">Endurance ( )></p>
           </span>
           <span class="vol"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
             <input v-model.number="stats" type="number" class="stat-input input-small" />
-            <p class="stats">Volonté ( )></p>
+            <p class="edo">Volonté ( )></p>
           </span>
           <span class="agi"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
-          
+
             <input v-model.number="stats" type="number" class="stat-input input-small" />
-            <p class="stats">Agilité ( )></p>
+            <p class="edo">Agilité ( )></p>
           </span>
           <span class="intel"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
             <input v-model.number="stats" type="number" class="stat-input input-small" />
-            <p class="stats">Intelligence ( )></p>
+            <p class="edo">Intelligence ( )></p>
           </span>
           <span class="style"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
-            <input v-model.number="stats" type="number" class="stat-input input-small"/>
-            <p class="stats">Style ( )></p>
+            <input v-model.number="stats" type="number" class="stat-input input-small" />
+            <p class="edo">Style ( )></p>
+          </span>
+        </div>
+        <div class="maneuver-first-section">
+          <svg width="300" height="180mm" xmlns="http://www.w3.org/2000/svg" class="stat-section-svg">
+            <rect x="1" y="1" width="180mm" height="120mm" rx="10" ry="10" fill="none" stroke="black"
+              stroke-width="2" />
+          </svg>
+          <p class="edo title">Manoeuvres exclusives :</p>
+          <span class="first-maneuver">
+            <p class="maneuver-title">{{ currentPlaybook?.firstManeuverTitle }}</p>
+            <span class="maneuver" v-html="currentPlaybook?.firstManeuverContent">
+            </span>
+          </span>
+          <span class="second-maneuver">
+            <p class="maneuver-title">{{ currentPlaybook?.secondManeuverTitle }}</p>
+            <span class="maneuver" v-html="currentPlaybook?.secondManeuverContent">
+            </span>
           </span>
         </div>
         <input style="display: none" ref="fileInput" type="file" @change="handleImageUpload" accept="image/*" />
+        <div class="borders-second">
+          <div class="border_top"></div>
+          <div class="border_bot"></div>
+          <div class="border_left"></div>
+          <div class="border_right"></div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="skill-section">
+          <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="stat-section-svg">
+            <rect x="1" y="1" width="180mm" height="70mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+          </svg>
+        </div>
+        <div class="borders">
+          <div class="border_top"></div>
+          <div class="border_bot"></div>
+          <div class="border_left"></div>
+          <div class="border_right"></div>
+        </div>
       </div>
     </div>
     <Button label="Sauvegarder" class="p-button-primary" @click="exportPdf" />
@@ -169,6 +204,7 @@
 import { Button } from "primevue";
 import html2pdf from "html2pdf.js";
 import { Dropdown } from 'primevue';
+import playbooksDataConfig from '../config/playbooks.json';
 export default {
   name: 'CharacterFormular',
   props: {
@@ -202,13 +238,24 @@ export default {
       textName: "",
       level: null,
       xp: "",
-      selectedPlaybook: { label: 'Musicien', value: 'Musicien' }, // Valeur sélectionnée
-      playbooks: [
-        { label: 'Musicien', value: 'Musicien' },
-        { label: 'Yakuza', value: 'Yakuza' },
-        { label: 'Hotesse', value: 'Hotesse' }
-      ],
+      selectedPlaybook: { label: 'Hotesse', value: 'host' }, // Valeur sélectionnée
+      playbooks: playbooksDataConfig.playbooks,
+      playbooksData: {
+        yakuza: playbooksDataConfig.yakuza,
+        host: playbooksDataConfig.host,
+        sdf: playbooksDataConfig.sdf,
+        salaryman: playbooksDataConfig.salaryman,
+        ouvrier: playbooksDataConfig.ouvrier,
+        policier: playbooksDataConfig.policier,
+        musicien: playbooksDataConfig.musicien,
+        journaliste: playbooksDataConfig.journaliste
+      },
     };
+  },
+  computed: {
+    currentPlaybook() {
+      return this.playbooksData[this.selectedPlaybook.value] || null;
+    }
   },
   components: {
     Button,
@@ -231,8 +278,12 @@ export default {
           orientation: "portrait",
         },
       };
-
-      html2pdf().set(options).from(element).save();
+      html2pdf().set(options).from(element).toPdf().get('pdf').then(function (pdf) {
+        // Supprimer la troisième page
+        pdf.deletePage(3);
+        // Enregistrer le PDF modifié
+        pdf.save();
+      });
     },
     // Fonction pour gérer le téléchargement d'une image
     handleImageUpload(event) {
@@ -291,12 +342,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .content {
   width: 210mm;
   /* Largeur d'une page A4 */
-  height: 296.5mm;
+  height: 297mm;
   /* Hauteur d'une page A4 */
   border: 2px solid black;
   position: relative;
@@ -478,17 +530,18 @@ svg {
   font-size: 16px;
   /* Ajustez selon vos besoins */
 }
+
 .stat-input {
   position: absolute;
-    top: 38px;
-    left: -25px;
-    z-index: 3;
-    height: 20px;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-family: Edo;
-    font-size: 22px;
+  top: 38px;
+  left: -25px;
+  z-index: 3;
+  height: 20px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: Edo;
+  font-size: 22px;
 }
 
 .input-large {
@@ -546,16 +599,31 @@ svg {
   left: 180px;
 }
 
-.stat-section-svg {
-  top: 85mm;
-  left: 15mm;
-}
+
 
 .stat-section {
   position: absolute;
   top: 85mm;
   left: 15mm;
   height: 71mm;
+  width: 181mm;
+  z-index: 3;
+}
+
+.skill-section {
+  position: absolute;
+  top: 20mm;
+  left: 15mm;
+  height: 71mm;
+  width: 181mm;
+  z-index: 3;
+}
+
+.maneuver-first-section {
+  position: absolute;
+  top: 160mm;
+  left: 15mm;
+  height: 122mm;
   width: 181mm;
   z-index: 3;
 }
@@ -602,7 +670,7 @@ svg {
   width: 100%;
 }
 
-.stats {
+.edo {
   position: absolute;
   font-family: Edo;
   font-size: 30px;
@@ -660,5 +728,38 @@ svg {
   align-items: center;
   justify-content: space-between;
   width: 100px;
+}
+
+.first-maneuver {
+  position: absolute;
+  top: 13mm;
+  left: 5mm;
+  width: 170mm;
+  height: 50mm;
+}
+
+.second-maneuver {
+  position: absolute;
+  top: 60mm;
+  left: 5mm;
+  width: 170mm;
+  height: 50mm;
+}
+
+.maneuver-title {
+  position: absolute;
+  top: -3mm;
+  left: 1mm;
+  font-family: Edo;
+  font-size: 16px;
+}
+
+.maneuver {
+  position: absolute;
+  top: 3mm;
+  left: 3mm;
+  text-align: left;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 </style>
