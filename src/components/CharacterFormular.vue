@@ -185,8 +185,39 @@
       <div class="content">
         <div class="skill-section">
           <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="stat-section-svg">
-            <rect x="1" y="1" width="180mm" height="70mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+            <rect x="1" y="1" width="180mm" height="145mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
           </svg>
+          <p class="edo title">Compétences :</p>
+          <span class="first-skill" v-on:click="firstSkill = !firstSkill">
+            <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+                <line v-if="firstSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
+                <line v-if="firstSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />  
+            </svg>
+            <p class="skill-title">{{ currentPlaybook?.firstSkillTitle }}</p>
+            <span class="skill" v-html="currentPlaybook?.firstSkillContent">
+            </span>
+          </span>
+          <span class="second-skill" v-on:click="secondSkill = !secondSkill">
+            <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+                <line v-if="secondSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
+                <line v-if="secondSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />  
+            </svg>
+            <p class="skill-title">{{ currentPlaybook?.secondSkillTitle }}</p>
+            <span class="skill" v-html="currentPlaybook?.secondSkillContent">
+            </span>
+          </span>
+          <span class="third-skill" v-on:click="thirdSkill = !thirdSkill">
+            <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+                <line v-if="thirdSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
+                <line v-if="thirdSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />  
+            </svg>
+            <p class="skill-title">{{ currentPlaybook?.thirdSkillTitle }}</p>
+            <span class="skill" v-html="currentPlaybook?.thirdSkillContent">
+            </span>
+          </span>
         </div>
         <div class="borders">
           <div class="border_top"></div>
@@ -250,6 +281,9 @@ export default {
         musicien: playbooksDataConfig.musicien,
         journaliste: playbooksDataConfig.journaliste
       },
+      firstSkill : false, 
+      secondSkill : false, 
+      thirdSkill : false
     };
   },
   computed: {
@@ -338,6 +372,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .container {
   display: flex;
   justify-content: center;
@@ -612,10 +651,10 @@ svg {
 
 .skill-section {
   position: absolute;
-  top: 20mm;
+  top: 15mm;
   left: 15mm;
-  height: 71mm;
-  width: 181mm;
+  height: 147mm;
+  width: 182mm;
   z-index: 3;
 }
 
@@ -730,23 +769,36 @@ svg {
   width: 100px;
 }
 
-.first-maneuver {
+.first-maneuver, .first-skill {
   position: absolute;
   top: 13mm;
-  left: 5mm;
-  width: 170mm;
+  left: 10mm;
+  width: 168mm;
   height: 50mm;
 }
 
-.second-maneuver {
+.second-maneuver, .second-skill {
   position: absolute;
-  top: 60mm;
-  left: 5mm;
-  width: 170mm;
+  left: 10mm;
+  width: 168mm;
+  height: 50mm;
+}
+.second-skill{
+  top: 68mm;
+}
+.second-maneuver{
+  top : 60mm;
+}
+
+.third-skill{
+  position: absolute;
+  top: 123mm;
+  left: 10mm;
+  width: 168mm;
   height: 50mm;
 }
 
-.maneuver-title {
+.maneuver-title, .skill-title {
   position: absolute;
   top: -3mm;
   left: 1mm;
@@ -754,12 +806,17 @@ svg {
   font-size: 16px;
 }
 
-.maneuver {
+.maneuver, .skill {
   position: absolute;
   top: 3mm;
   left: 3mm;
   text-align: left;
   font-size: 15px;
   font-family: Arial, Helvetica, sans-serif;
+}
+.first-skill>svg, .second-skill>svg, .third-skill>svg{
+  position: absolute;
+  left: -5mm;
+  top : 2mm
 }
 </style>

@@ -1,20 +1,50 @@
 {
   "playbooks": [
-    { "label": "Musicien", "value": "musicien" },
-    { "label": "Yakuza", "value": "yakuza" },
-    { "label": "Hotesse", "value": "host" },
-    { "label": "SDF", "value": "sdf" },
-    { "label": "Policier", "value": "policier" },
-    { "label": "Ouvrier", "value": "ouvrier" },
-    { "label": "Salaryman", "value": "salaryman" },
-    { "label": "Journaliste", "value": "journaliste" }
-],
-"journaliste": {
+    {
+      "label": "Musicien",
+      "value": "musicien"
+    },
+    {
+      "label": "Yakuza",
+      "value": "yakuza"
+    },
+    {
+      "label": "Hotesse",
+      "value": "host"
+    },
+    {
+      "label": "SDF",
+      "value": "sdf"
+    },
+    {
+      "label": "Policier",
+      "value": "policier"
+    },
+    {
+      "label": "Ouvrier",
+      "value": "ouvrier"
+    },
+    {
+      "label": "Salaryman",
+      "value": "salaryman"
+    },
+    {
+      "label": "Journaliste",
+      "value": "journaliste"
+    }
+  ],
+  "journaliste": {
     "firstManeuverTitle": "Investiguer",
     "firstManeuverContent": "<p>Quand vous enquêtez sur un sujet, un événement ou un fait, lancez <strong>+Intelligence</strong>.</p><ul><li>Sur un 10+ : vous obtenez des informations fiables, pertinentes et exclusives, et vous pouvez poser une question au MJ sur ce que vous avez trouvé.</li><li>Sur un 7-9 : vous obtenez des informations fiables, pertinentes et exclusives, mais il y a un risque ou un coût. Le sujet peut être dangereux, sensible ou controversé.</li><li>Sur un échec : vous n’obtenez pas d’informations utiles, et vous vous exposez à un danger ou à une complication.</li></ul>",
     "secondManeuverTitle": "Interviewer",
-    "secondManeuverContent": "<p>Quand vous interviewez quelqu’un pour obtenir son témoignage, son avis ou son expertise, lancez <strong>+Volonté</strong>.</p><ul><li>Sur un 10+ : il vous dit ce que vous voulez savoir, à condition que vous lui garantissiez quelque chose en retour.</li><li>Sur un 7-9 : il vous dit ce que vous voulez savoir, mais il vous demande quelque chose de plus ou de différent que ce que vous aviez prévu.</li><li>Sur un échec : il ne vous dit pas ce que vous voulez savoir, et il vous rejette ou vous dénonce.</li></ul>"
-},
+    "secondManeuverContent": "<p>Quand vous interviewez quelqu’un pour obtenir son témoignage, son avis ou son expertise, lancez <strong>+Volonté</strong>.</p><ul><li>Sur un 10+ : il vous dit ce que vous voulez savoir, à condition que vous lui garantissiez quelque chose en retour.</li><li>Sur un 7-9 : il vous dit ce que vous voulez savoir, mais il vous demande quelque chose de plus ou de différent que ce que vous aviez prévu.</li><li>Sur un échec : il ne vous dit pas ce que vous voulez savoir, et il vous rejette ou vous dénonce.</li></ul>",
+    "firstSkillTitle": "Sources",
+    "firstSkillContent": "<p>Vous avez des sources fiables, diverses et utiles qui peuvent vous fournir des informations, des témoignages ou des pistes. Quand vous utilisez vos sources pour investiguer, vous pouvez poser une question supplémentaire parmi les suivantes :</p><ul><li>Qui est impliqué ou concerné par ce sujet, cet événement ou ce fait ?</li><li>Quand et où cela s’est-il produit ou va-t-il se produire ?</li><li>Comment cela s’est-il produit ou va-t-il se produire ?</li><li>Pourquoi cela s’est-il produit ou va-t-il se produire ?</li><li>Quelles sont les conséquences ou les implications de ce sujet, cet événement ou ce fait ?</li></ul>",
+    "secondSkillTitle": "Interview choc",
+    "secondSkillContent": "<p>Quand vous faites une interview choc avec quelqu’un qui a un lien avec un sujet, un événement ou un fait, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : vous réussissez à le mettre en difficulté, à le faire parler ou à le démasquer, et vous pouvez choisir un effet supplémentaire parmi les suivants : gagner un avantage, impressionner quelqu’un ou récupérer un point de chaleur.</li><li>Sur un 7-9 : vous réussissez à faire une interview choc, mais il y a une critique, une controverse ou une conséquence. Le public peut être choqué, indifférent ou hostile.</li><li>Sur un échec : vous ne réussissez pas à faire une bonne interview, et vous vous exposez à un danger ou à une complication.</li></ul>",
+    "thirdSkillTitle": "Journaliste d’investigation",
+    "thirdSkillContent": "<p>Vous êtes un journaliste d’investigation, qui n’hésite pas à creuser, à dénoncer ou à révéler la vérité. Vous avez un bonus de +1 à votre attribut <strong>Intelligence</strong> (max +3).</p>"
+  },
   "yakuza": {
     "firstManeuverTitle": "Intimider",
     "firstManeuverContent": "<p>Quand vous extorquez quelqu’un pour qu’il vous donne de l’argent, des informations ou des faveurs, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : il vous donnera ce que vous voulez, à condition que vous lui laissiez une porte de sortie.</li><li>Sur un 7-9 : il vous donnera ce que vous voulez, mais il vous demande quelque chose en retour, ou il vous met une condition.</li><li>Sur un échec : il ne cède pas, et il vous dénonce ou vous attaque.</li></ul>",
@@ -25,7 +55,13 @@
     "firstManeuverTitle": "Flatter",
     "firstManeuverContent": "<p>Quand vous flattez quelqu’un pour qu’il vous apprécie, vous écoute ou vous donne quelque chose, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : il fait ce que vous voulez, à condition que vous lui fassiez un compliment sincère.</li><li>Sur un 7-9 : il fait ce que vous voulez, mais il vous demande quelque chose en retour, ou il vous met une condition.</li><li>Sur un échec : il ne fait pas ce que vous voulez, et il vous méprise ou vous ignore.</li></ul>",
     "secondManeuverTitle": "Divertir",
-    "secondManeuverContent": "<p>Quand vous divertissez quelqu’un avec une histoire, une blague, une chanson ou un jeu, lancez <strong>+Chaleur</strong>.</p><ul><li>Sur un 10+ : vous le faites rire, sourire ou pleurer, et vous pouvez choisir un effet supplémentaire parmi les suivants : gagner de l’argent, des informations ou des faveurs, influencer son humeur, son opinion ou son comportement.</li><li>Sur un 7-9 : vous le faites rire, sourire ou pleurer, mais il y a un risque ou un coût. Vous pouvez être interrompu, critiqué ou jalousé.</li><li>Sur un échec : vous ne le divertissez pas, et vous vous exposez à un danger ou à une complication.</li></ul>"
+    "secondManeuverContent": "<p>Quand vous divertissez quelqu’un avec une histoire, une blague, une chanson ou un jeu, lancez <strong>+Chaleur</strong>.</p><ul><li>Sur un 10+ : vous le faites rire, sourire ou pleurer, et vous pouvez choisir un effet supplémentaire parmi les suivants : gagner de l’argent, des informations ou des faveurs, influencer son humeur, son opinion ou son comportement.</li><li>Sur un 7-9 : vous le faites rire, sourire ou pleurer, mais il y a un risque ou un coût. Vous pouvez être interrompu, critiqué ou jalousé.</li><li>Sur un échec : vous ne le divertissez pas, et vous vous exposez à un danger ou à une complication.</li></ul>",
+    "firstSkillTitle": "Empathie",
+    "firstSkillContent": "<p>Vous avez le don pour écouter, comprendre et réconforter les gens. Quand vous faites une confidence à quelqu’un, lancez <strong>+Chaleur</strong>.</p><ul><li>Sur un 10+ : vous gagnez sa confiance, son amitié ou son amour, et il vous révèle un secret, un problème ou un désir.</li><li>Sur un 7-9 : vous gagnez sa confiance, son amitié ou son amour, mais il vous demande quelque chose en retour, ou il vous met une condition.</li><li>Sur un échec : vous ne gagnez pas sa confiance, son amitié ou son amour, et il vous rejette, vous trahit ou vous dénonce.</li></ul>",
+    "secondSkillTitle": "Charme",
+    "secondSkillContent": "<p>Quand vous charmez quelqu’un avec votre apparence, votre voix ou votre gestuelle, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : vous le séduisez, l’envoûtez ou l’attirez, et vous pouvez choisir un effet supplémentaire parmi les suivants : gagner de l’argent, des informations ou des faveurs, influencer son humeur, son opinion ou son comportement.</li><li>Sur un 7-9 : vous le charmez, mais il y a un risque ou un coût. Vous pouvez être repéré, jalousé ou harcelé.</li><li>Sur un échec : vous ne le charmez pas, et vous vous exposez à un danger ou à une complication.</li></ul>",
+    "thirdSkillTitle": "Idole",
+    "thirdSkillContent": "<p>Vous êtes un hôte ou une hôtesse exemplaire, qui respecte les règles et les attentes de votre métier, et qui inspire admiration et fidélité. Vous avez un bonus de +1 à votre attribut <strong>Style</strong> (max +3).</p>"
   },
   "sdf": {
     "firstManeuverTitle": "Mendier",
@@ -49,7 +85,13 @@
     "firstManeuverTitle": "Jouer",
     "firstManeuverContent": "<p>Quand vous jouez un morceau pour divertir, séduire ou défier quelqu’un, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : vous réussissez à le jouer sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : gagner de la notoriété, de l’argent ou des contacts, influencer l’ambiance ou l’atmosphère d’un lieu, déclencher une réaction ou une conséquence.</li><li>Sur un 7-9 : vous réussissez à le jouer, mais il y a un risque ou un coût. Vous pouvez être dépassé, éclipsé ou contesté.</li><li>Sur un échec : vous ne réussissez pas à le jouer, et vous subissez les conséquences.</li></ul>",
     "secondManeuverTitle": "Accompagner",
-    "secondManeuverContent": "<p>Quand vous accompagnez quelqu’un avec votre musique pour le soutenir, le renforcer ou le guérir, lancez <strong>+Volonté</strong>.</p><ul><li>Sur un 10+ : vous réussissez à l’accompagner sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : augmenter la puissance ou l’effet de son action, partager son succès ou son échec, influencer son humeur, son opinion ou son comportement, déclencher une réaction ou une conséquence.</li><li>Sur un 7-9 : vous réussissez à l’accompagner, mais il y a un risque ou un coût. Vous pouvez être distrait, épuisé ou blessé.</li><li>Sur un échec : vous ne réussissez pas à l’accompagner, et vous subissez les conséquences.</li></ul>"
+    "secondManeuverContent": "<p>Quand vous accompagnez quelqu’un avec votre musique pour le soutenir, le renforcer ou le guérir, lancez <strong>+Volonté</strong>.</p><ul><li>Sur un 10+ : vous réussissez à l’accompagner sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : augmenter la puissance ou l’effet de son action, partager son succès ou son échec, influencer son humeur, son opinion ou son comportement, déclencher une réaction ou une conséquence.</li><li>Sur un 7-9 : vous réussissez à l’accompagner, mais il y a un risque ou un coût. Vous pouvez être distrait, épuisé ou blessé.</li><li>Sur un échec : vous ne réussissez pas à l’accompagner, et vous subissez les conséquences.</li></ul>",
+    "firstSkillTitle": "Composer",
+    "firstSkillContent": "<p>Quand vous composez un morceau original pour exprimer vos sentiments, vos idées ou vos messages, lancez <strong>+Chaleur</strong>.</p><ul><li>Sur un 10+ : vous réussissez à le composer sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : gagner de la notoriété, de l’argent ou des contacts, influencer l’ambiance ou l’atmosphère d’un lieu, déclencher une réaction ou une conséquence.</li><li>Sur un 7-9 : vous réussissez à le composer, mais il y a un risque ou un coût. Vous pouvez être copié, critiqué ou censuré.</li><li>Sur un échec : vous ne réussissez pas à le composer, et vous subissez les conséquences.</li></ul>",
+    "secondSkillTitle": "Improviser",
+    "secondSkillContent": "<p>Vous avez le don pour improviser des mélodies, des paroles ou des rythmes en fonction de la situation, de l’inspiration ou du public. Quand vous improvisez quelque chose, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : vous réussissez à improviser sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : gagner de la notoriété, de l’argent ou des contacts, influencer l’ambiance ou l’atmosphère d’un lieu, déclencher une réaction ou une conséquence.</li><li>Sur un 7-9 : vous réussissez à improviser, mais il y a un risque ou un coût. Vous pouvez être dépassé, éclipsé ou contesté.</li><li>Sur un échec : vous ne réussissez pas à improviser, et vous subissez les conséquences.</li></ul>",
+    "thirdSkillTitle": "Mélomane",
+    "thirdSkillContent": "<p>Vous êtes un musicien exemplaire, qui respecte les rythmes et les harmonies de votre art, et qui inspire la créativité, la discipline et l’expression. Vous avez un bonus constant de +1 à votre attribut <strong>Chaleur</strong>.</p>"
   },
   "salaryman": {
     "firstManeuverTitle": "Marchander",
