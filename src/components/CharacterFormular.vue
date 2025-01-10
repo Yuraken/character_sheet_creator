@@ -12,7 +12,7 @@
         <img class="cadre" src="@/assets/cadre.svg">
         <div class="image-container" @click="triggerFileInput">
           <img v-if="imageSrc" :src="imageSrc" alt="Image téléchargée" class="uploaded-image" />
-          <span v-else class="placeholder-text">Cliquez pour ajouter une image</span>
+          <div v-else class="placeholder-text">Cliquez pour ajouter une image</div>
         </div>
 
         <img class="playbook-icon" :src="require('@/assets/' + selectedPlaybook.value + '.svg')" @click="openDropdown"
@@ -54,7 +54,7 @@
         </div>
         <div class="bot-input-section">
           <div class="injuries">
-            <span style="font-family: edo; font-size: 25px">Blessures :</span>
+            <div style="font-family: edo; font-size: 25px">Blessures :</div>
             <svg width="5mm" height="5mm" xmlns="http://www.w3.org/2000/svg">
               <rect x="1" y="1" width="5mm" height="5mm" fill="none" stroke="black" stroke-width="2" />
             </svg>
@@ -72,8 +72,8 @@
             </svg>
           </div>
           <div class="heat">
-            <span style="font-family: edo; font-size: 25px">Chaleur :</span>
-            <span style="font-family: edo; font-size: 25px">/3</span>
+            <div style="font-family: edo; font-size: 25px">Chaleur :</div>
+            <div style="font-family: edo; font-size: 25px">/3</div>
           </div>
           <div class="states">
             <div>
@@ -131,31 +131,31 @@
             <rect x="1" y="1" width="180mm" height="70mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
           </svg>
           <p class="edo title">Stats :</p>
-          <span class="force"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+          <div class="force"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
             <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="edo">Force ( )></p>
-          </span>
-          <span class="endu"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+          </div>
+          <div class="endu"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
             <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="edo">Endurance ( )></p>
-          </span>
-          <span class="vol"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+          </div>
+          <div class="vol"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
             <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="edo">Volonté ( )></p>
-          </span>
-          <span class="agi"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+          </div>
+          <div class="agi"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
 
             <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="edo">Agilité ( )></p>
-          </span>
-          <span class="intel"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+          </div>
+          <div class="intel"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
             <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="edo">Intelligence ( )></p>
-          </span>
-          <span class="style"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
+          </div>
+          <div class="style"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
             <input v-model.number="stats" type="number" class="stat-input input-small" />
             <p class="edo">Style ( )></p>
-          </span>
+          </div>
         </div>
         <div class="maneuver-first-section">
           <svg width="300" height="180mm" xmlns="http://www.w3.org/2000/svg" class="stat-section-svg">
@@ -163,16 +163,16 @@
               stroke-width="2" />
           </svg>
           <p class="edo title">Manoeuvres exclusives :</p>
-          <span class="first-maneuver">
+          <div class="first-maneuver">
             <p class="maneuver-title">{{ currentPlaybook?.firstManeuverTitle }}</p>
-            <span class="maneuver" v-html="currentPlaybook?.firstManeuverContent">
-            </span>
-          </span>
-          <span class="second-maneuver">
+            <div class="maneuver" v-html="currentPlaybook?.firstManeuverContent">
+            </div>
+          </div>
+          <div class="second-maneuver">
             <p class="maneuver-title">{{ currentPlaybook?.secondManeuverTitle }}</p>
-            <span class="maneuver" v-html="currentPlaybook?.secondManeuverContent">
-            </span>
-          </span>
+            <div class="maneuver" v-html="currentPlaybook?.secondManeuverContent">
+            </div>
+          </div>
         </div>
         <input style="display: none" ref="fileInput" type="file" @change="handleImageUpload" accept="image/*" />
         <div class="borders-second">
@@ -188,36 +188,36 @@
             <rect x="1" y="1" width="180mm" height="145mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
           </svg>
           <p class="edo title">Compétences :</p>
-          <span class="first-skill" v-on:click="firstSkill = !firstSkill">
+          <div class="first-skill" v-on:click="firstSkill = !firstSkill">
             <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
                 <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
                 <line v-if="firstSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
                 <line v-if="firstSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />  
             </svg>
             <p class="skill-title">{{ currentPlaybook?.firstSkillTitle }}</p>
-            <span class="skill" v-html="currentPlaybook?.firstSkillContent">
-            </span>
-          </span>
-          <span class="second-skill" v-on:click="secondSkill = !secondSkill">
-            <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
+            <div class="skill" v-html="currentPlaybook?.firstSkillContent">
+            </div>
+          </div>
+          <div class="second-skill" v-on:click="secondSkill = !secondSkill">
+            <svg width="5mm" height="5mm" xmlns="http://www.w3.org/2000/svg">
                 <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
                 <line v-if="secondSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
                 <line v-if="secondSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />  
             </svg>
             <p class="skill-title">{{ currentPlaybook?.secondSkillTitle }}</p>
-            <span class="skill" v-html="currentPlaybook?.secondSkillContent">
-            </span>
-          </span>
-          <span class="third-skill" v-on:click="thirdSkill = !thirdSkill">
+            <div class="skill" v-html="currentPlaybook?.secondSkillContent">
+            </div>
+          </div>
+          <div class="third-skill" v-on:click="thirdSkill = !thirdSkill">
             <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
                 <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
                 <line v-if="thirdSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
                 <line v-if="thirdSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />  
             </svg>
             <p class="skill-title">{{ currentPlaybook?.thirdSkillTitle }}</p>
-            <span class="skill" v-html="currentPlaybook?.thirdSkillContent">
-            </span>
-          </span>
+            <div class="skill" v-html="currentPlaybook?.thirdSkillContent">
+            </div>
+          </div>
         </div>
         <div class="borders">
           <div class="border_top"></div>
@@ -772,19 +772,20 @@ svg {
 .first-maneuver, .first-skill {
   position: absolute;
   top: 13mm;
-  left: 10mm;
-  width: 168mm;
+  left: 5mm;
+  width: 175mm;
   height: 50mm;
 }
 
 .second-maneuver, .second-skill {
   position: absolute;
-  left: 10mm;
-  width: 168mm;
+  left: 5mm;
+  width: 175mm;
   height: 50mm;
 }
 .second-skill{
   top: 68mm;
+  left: 5mm;
 }
 .second-maneuver{
   top : 60mm;
@@ -793,8 +794,8 @@ svg {
 .third-skill{
   position: absolute;
   top: 123mm;
-  left: 10mm;
-  width: 168mm;
+  left: 5mm;
+  width: 175mm;
   height: 50mm;
 }
 
@@ -814,9 +815,20 @@ svg {
   font-size: 15px;
   font-family: Arial, Helvetica, sans-serif;
 }
+.skill{
+  margin-left: 7mm;
+  margin-top: -2mm;
+}
+
 .first-skill>svg, .second-skill>svg, .third-skill>svg{
   position: absolute;
-  left: -5mm;
-  top : 2mm
+  left: 0;
+  top : 0;
+  width: 5mm;
+  height: 5mm;
+}
+.first-skill>p, .second-skill>p, .third-skill>p{
+ margin-left: 7mm;
+ margin-top: 2.5mm;
 }
 </style>
