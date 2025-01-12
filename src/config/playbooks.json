@@ -91,7 +91,9 @@
     "secondSkillTitle": "Improviser",
     "secondSkillContent": "<p>Vous avez le don pour improviser des mélodies, des paroles ou des rythmes en fonction de la situation, de l’inspiration ou du public. Quand vous improvisez quelque chose, lancez <strong>+Style</strong>.</p><ul><li>Sur un 10+ : vous réussissez à improviser sans problème, et vous pouvez choisir un effet supplémentaire parmi les suivants : gagner de la notoriété, de l’argent ou des contacts, influencer l’ambiance ou l’atmosphère d’un lieu, déclencher une réaction ou une conséquence.</li><li>Sur un 7-9 : vous réussissez à improviser, mais il y a un risque ou un coût. Vous pouvez être dépassé, éclipsé ou contesté.</li><li>Sur un échec : vous ne réussissez pas à improviser, et vous subissez les conséquences.</li></ul>",
     "thirdSkillTitle": "Mélomane",
-    "thirdSkillContent": "<p>Vous êtes un musicien exemplaire, qui respecte les rythmes et les harmonies de votre art, et qui inspire la créativité, la discipline et l’expression. Vous avez un bonus constant de +1 à votre attribut <strong>Chaleur</strong>.</p>"
+    "thirdSkillContent": "<p>Vous êtes un musicien exemplaire, qui respecte les rythmes et les harmonies de votre art, et qui inspire la créativité, la discipline et l’expression. Vous avez un bonus constant de +1 à votre attribut <strong>Chaleur</strong>.</p>",
+    "firstTechTitle": "Solo déstabilisant",
+    "firstTechContent": "<p>Le musicien joue une mélodie si intense qu’elle perturbe et désoriente les adversaires.</p><p><strong>Effet :</strong> Désoriente temporairement un groupe d’ennemis, réduisant leur efficacité au combat.</p>"
   },
   "salaryman": {
     "firstManeuverTitle": "Marchander",

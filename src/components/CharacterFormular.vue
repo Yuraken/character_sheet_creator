@@ -185,14 +185,15 @@
       <div class="content">
         <div class="skill-section">
           <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="stat-section-svg">
-            <rect x="1" y="1" width="180mm" height="145mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+            <rect x="1" y="1" width="180mm" height="145mm" rx="10" ry="10" fill="none" stroke="black"
+              stroke-width="2" />
           </svg>
           <p class="edo title">Compétences :</p>
           <div class="first-skill" v-on:click="firstSkill = !firstSkill">
             <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
-                <line v-if="firstSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
-                <line v-if="firstSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />  
+              <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+              <line v-if="firstSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
+              <line v-if="firstSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />
             </svg>
             <p class="skill-title">{{ currentPlaybook?.firstSkillTitle }}</p>
             <div class="skill" v-html="currentPlaybook?.firstSkillContent">
@@ -200,9 +201,9 @@
           </div>
           <div class="second-skill" v-on:click="secondSkill = !secondSkill">
             <svg width="5mm" height="5mm" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
-                <line v-if="secondSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
-                <line v-if="secondSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />  
+              <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+              <line v-if="secondSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
+              <line v-if="secondSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />
             </svg>
             <p class="skill-title">{{ currentPlaybook?.secondSkillTitle }}</p>
             <div class="skill" v-html="currentPlaybook?.secondSkillContent">
@@ -210,14 +211,48 @@
           </div>
           <div class="third-skill" v-on:click="thirdSkill = !thirdSkill">
             <svg width="3mm" height="3mm" xmlns="http://www.w3.org/2000/svg">
-                <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
-                <line v-if="thirdSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
-                <line v-if="thirdSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />  
+              <rect x="1" y="1" width="3mm" height="3mm" fill="none" stroke="black" stroke-width="2" />
+              <line v-if="thirdSkill" x1="0" y1="0" x2="3mm" y2="3mm" stroke="black" stroke-width="2" />
+              <line v-if="thirdSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />
             </svg>
             <p class="skill-title">{{ currentPlaybook?.thirdSkillTitle }}</p>
             <div class="skill" v-html="currentPlaybook?.thirdSkillContent">
             </div>
           </div>
+        </div>
+        <div class="tech-section">
+          <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="tech-section-svg">
+            <rect x="1" y="1" width="87mm" height="120mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+          </svg>
+          <p class="edo title">Techniques :</p>
+          <div class="first-tech">
+            <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="tech-section-svg">
+              <rect x="1" y="1" width="80mm" height="33mm" rx="10" ry="10" fill="none" stroke="black"
+                stroke-width="2" />
+            </svg>
+            <p class="tech-title">{{ currentPlaybook?.firstTechTitle }}</p>
+            <div class="tech" v-html="currentPlaybook?.firstTechContent">
+            </div>
+          </div>
+          <div class="second-tech">
+            <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="tech-section-svg">
+              <rect x="1" y="1" width="80mm" height="33mm" rx="10" ry="10" fill="none" stroke="black"
+                stroke-width="2" />
+            </svg>
+          </div>
+          <div class="third-tech">
+            <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="tech-section-svg">
+              <rect x="1" y="1" width="80mm" height="33mm" rx="10" ry="10" fill="none" stroke="black"
+                stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+        <div class="inventory-section">
+          <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="inventory-section-svg">
+            <rect x="1" y="1" width="87mm" height="120mm" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
+          </svg>
+          <p class="edo title">Inventaire :</p>
+
         </div>
         <div class="borders">
           <div class="border_top"></div>
@@ -227,15 +262,19 @@
         </div>
       </div>
     </div>
-    <Button label="Sauvegarder" class="p-button-primary" @click="exportPdf" />
   </form>
+  <div class="footer">
+    <Message>Message Content</Message>
+    <Button label="Sauvegarder" class="p-button-primary" @click="exportPdf" />
+  </div>
 </template>
 
 <script>
 import { Button } from "primevue";
 import html2pdf from "html2pdf.js";
-import { Dropdown } from 'primevue';
+import Dropdown from 'primevue/dropdown';
 import playbooksDataConfig from '../config/playbooks.json';
+import Message from "primevue";
 export default {
   name: 'CharacterFormular',
   props: {
@@ -269,7 +308,7 @@ export default {
       textName: "",
       level: null,
       xp: "",
-      selectedPlaybook: { label: 'Hotesse', value: 'host' }, // Valeur sélectionnée
+      selectedPlaybook: { label: 'Musicien', value: 'musicien' }, // Valeur sélectionnée
       playbooks: playbooksDataConfig.playbooks,
       playbooksData: {
         yakuza: playbooksDataConfig.yakuza,
@@ -281,9 +320,9 @@ export default {
         musicien: playbooksDataConfig.musicien,
         journaliste: playbooksDataConfig.journaliste
       },
-      firstSkill : false, 
-      secondSkill : false, 
-      thirdSkill : false
+      firstSkill: false,
+      secondSkill: false,
+      thirdSkill: false
     };
   },
   computed: {
@@ -293,7 +332,8 @@ export default {
   },
   components: {
     Button,
-    Dropdown
+    Dropdown,
+    Message
   },
   methods: {
     exportPdf() {
@@ -370,13 +410,13 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-form{
+form {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .container {
   display: flex;
   justify-content: center;
@@ -658,6 +698,20 @@ svg {
   z-index: 3;
 }
 
+.tech-section,
+.inventory-section {
+  position: absolute;
+  top: 165mm;
+  left: 15mm;
+  height: 122mm;
+  width: 92mm;
+  z-index: 3;
+}
+
+.inventory-section {
+  left: 108mm;
+}
+
 .maneuver-first-section {
   position: absolute;
   top: 160mm;
@@ -769,7 +823,8 @@ svg {
   width: 100px;
 }
 
-.first-maneuver, .first-skill {
+.first-maneuver,
+.first-skill {
   position: absolute;
   top: 13mm;
   left: 5mm;
@@ -777,21 +832,24 @@ svg {
   height: 50mm;
 }
 
-.second-maneuver, .second-skill {
+.second-maneuver,
+.second-skill {
   position: absolute;
   left: 5mm;
   width: 175mm;
   height: 50mm;
 }
-.second-skill{
+
+.second-skill {
   top: 68mm;
   left: 5mm;
 }
-.second-maneuver{
-  top : 60mm;
+
+.second-maneuver {
+  top: 60mm;
 }
 
-.third-skill{
+.third-skill {
   position: absolute;
   top: 123mm;
   left: 5mm;
@@ -799,7 +857,10 @@ svg {
   height: 50mm;
 }
 
-.maneuver-title, .skill-title {
+.maneuver-title,
+.skill-title,
+.tech-title,
+.tech-title-input {
   position: absolute;
   top: -3mm;
   left: 1mm;
@@ -807,7 +868,9 @@ svg {
   font-size: 16px;
 }
 
-.maneuver, .skill {
+.maneuver,
+.skill,
+.tech {
   position: absolute;
   top: 3mm;
   left: 3mm;
@@ -815,20 +878,63 @@ svg {
   font-size: 15px;
   font-family: Arial, Helvetica, sans-serif;
 }
-.skill{
+
+.skill {
   margin-left: 7mm;
   margin-top: -2mm;
 }
 
-.first-skill>svg, .second-skill>svg, .third-skill>svg{
+.tech {
+  margin-top: 2mm;
+  left: 1mm;
+  font-size: 14px;
+}
+
+.first-skill>svg,
+.second-skill>svg,
+.third-skill>svg {
   position: absolute;
   left: 0;
-  top : 0;
+  top: 0;
   width: 5mm;
   height: 5mm;
 }
-.first-skill>p, .second-skill>p, .third-skill>p{
- margin-left: 7mm;
- margin-top: 2.5mm;
+
+.first-skill>p,
+.second-skill>p,
+.third-skill>p {
+  margin-left: 7mm;
+  margin-top: 2.5mm;
+}
+
+.first-tech,
+.second-tech,
+.third-tech {
+  position: absolute;
+  top: 13mm;
+  left: 4mm;
+  width: 82mm;
+  height: 35mm;
+}
+
+.second-tech {
+  top: 49mm;
+}
+
+.third-tech {
+  top: 85mm;
+}
+
+.tech-title-input {
+  height: auto;
+  padding: 4mm 1mm;
+  width: 95%;
+}
+
+
+.footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>
