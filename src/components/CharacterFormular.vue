@@ -26,7 +26,7 @@
               <rect x="1" y="1" width="448" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
             </svg>
             <label class="input_name">Nom: </label>
-            <input v-model="name" type="text" class="text-input input-large" placeholder="Nom du perso" />
+            <input v-model="name" type="text" class="text-input input-large" />
           </div>
         </div>
         <div class="mid-input-section">
@@ -35,7 +35,7 @@
               <rect x="1" y="1" width="248" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
             </svg>
             <p class="input_name">Origine: </p>
-            <input v-model="origin" type="text" class="text-input input-medium" placeholder="Origine du perso" />
+            <input v-model="origin" type="text" class="text-input input-medium"/>
           </div>
           <div class="small-custom-input" id="lvl">
             <svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
@@ -206,7 +206,7 @@
               <line v-if="secondSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />
             </svg>
             <p class="skill-title">{{ currentPlaybook?.secondSkillTitle }}</p>
-            <div class="skill" v-html="currentPlaybook?.secondSkillContent">
+            <div :class="'skill '+ selectedPlaybook.value+'-second-skill'" v-html="currentPlaybook?.secondSkillContent">
             </div>
           </div>
           <div class="third-skill" v-on:click="thirdSkill = !thirdSkill">
@@ -322,7 +322,8 @@ export default {
       },
       firstSkill: false,
       secondSkill: false,
-      thirdSkill: false
+      thirdSkill: false,
+      format : false,
     };
   },
   computed: {
@@ -338,6 +339,8 @@ export default {
   methods: {
     exportPdf() {
       const element = document.getElementById("export-content");
+      if(this.name == "")
+          this.name = this.selectedPlaybook.label;
       const options = {
         margin: [0, 0, 0, 0], // Ajoute une marge de 10mm
         filename: this.name + ".pdf",
@@ -353,10 +356,8 @@ export default {
         },
       };
       html2pdf().set(options).from(element).toPdf().get('pdf').then(function (pdf) {
-        // Supprimer la troisième page
         pdf.deletePage(3);
-        // Enregistrer le PDF modifié
-        pdf.save();
+        pdf.save(this.name + ".pdf",options);
       });
     },
     // Fonction pour gérer le téléchargement d'une image
@@ -913,7 +914,7 @@ svg {
   position: absolute;
   top: 13mm;
   left: 4mm;
-  width: 82mm;
+  width: 80mm;
   height: 35mm;
 }
 
@@ -936,5 +937,9 @@ svg {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.ouvrier-second-skill{
+  font-size: 14px;
 }
 </style>
