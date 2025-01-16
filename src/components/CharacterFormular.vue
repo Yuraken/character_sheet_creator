@@ -234,7 +234,7 @@
           <p class="edo title">Techniques :</p>
           <div class="first-tech">
             <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="tech-section-svg">
-              <rect x="1" y="1" width="80mm" height="33mm" rx="10" ry="10" fill="none" stroke="black"
+              <rect x="1" y="1" width="82mm" height="33mm" rx="10" ry="10" fill="none" stroke="black"
                 stroke-width="2" />
             </svg>
             <p class="tech-title">{{ currentPlaybook?.firstTechTitle }}</p>
@@ -243,13 +243,13 @@
           </div>
           <div class="second-tech">
             <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="tech-section-svg">
-              <rect x="1" y="1" width="80mm" height="33mm" rx="10" ry="10" fill="none" stroke="black"
+              <rect x="1" y="1" width="82mm" height="33mm" rx="10" ry="10" fill="none" stroke="black"
                 stroke-width="2" />
             </svg>
           </div>
           <div class="third-tech">
             <svg width="300" height="400" xmlns="http://www.w3.org/2000/svg" class="tech-section-svg">
-              <rect x="1" y="1" width="80mm" height="33mm" rx="10" ry="10" fill="none" stroke="black"
+              <rect x="1" y="1" width="82mm" height="33mm" rx="10" ry="10" fill="none" stroke="black"
                 stroke-width="2" />
             </svg>
           </div>
@@ -955,8 +955,8 @@ svg {
 .third-tech {
   position: absolute;
   top: 13mm;
-  left: 4mm;
-  width: 80mm;
+  left: 2.5mm;
+  width: 83mm;
   height: 35mm;
 }
 
