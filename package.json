@@ -15,7 +15,7 @@
     "html2pdf.js": "^0.10.2",
     "jspdf": "^2.5.2",
     "primeicons": "^7.0.0",
-    "primevue": "^4.2.3",
+    "primevue": "^4.2.5",
     "quill": "^2.0.2",
     "vue": "^3.2.13",
     "vue3-simple-html2pdf": "^0.0.7"

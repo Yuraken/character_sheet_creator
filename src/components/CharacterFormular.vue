@@ -1,4 +1,11 @@
 <template>
+  <header>
+    <Message severity="info" class="message">
+      <li>Pour changer de playbook, cliquez sur l'icone du playbook actuel</li>
+      <li>Le maximum d'une stat est +2 (+3 si vous avez la compétence correspondante)</li>
+      <li>Cochez 1 compétence de départ.</li>
+    </Message>
+  </header>
   <form>
     <div id="export-content" class="container">
       <div class="content">
@@ -18,7 +25,7 @@
         <img class="playbook-icon" :src="require('@/assets/' + selectedPlaybook.value + '.svg')" @click="openDropdown"
           alt="Playbook Icon" />
 
-        <Dropdown ref="dropdown" v-model="selectedPlaybook" :options="playbooks" optionLabel="label"
+        <Select ref="dropdown" v-model="selectedPlaybook" :options="playbooks" optionLabel="label"
           style="display: none;" />
         <div class="top-input-section">
           <div class="normal-custom-input" id="name">
@@ -35,7 +42,7 @@
               <rect x="1" y="1" width="248" height="38" rx="10" ry="10" fill="none" stroke="black" stroke-width="2" />
             </svg>
             <p class="input_name">Origine: </p>
-            <input v-model="origin" type="text" class="text-input input-medium"/>
+            <input v-model="origin" type="text" class="text-input input-medium" />
           </div>
           <div class="small-custom-input" id="lvl">
             <svg width="100" height="40" xmlns="http://www.w3.org/2000/svg" class="input-border">
@@ -132,28 +139,27 @@
           </svg>
           <p class="edo title">Stats :</p>
           <div class="force"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
-            <input v-model.number="stats" type="number" class="stat-input input-small" />
+            <input v-model.number="stats.force" type="number" class="stat-input input-small" />
             <p class="edo">Force ( )></p>
           </div>
           <div class="endu"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
-            <input v-model.number="stats" type="number" class="stat-input input-small" />
+            <input v-model.number="stats.endu" type="number" class="stat-input input-small" />
             <p class="edo">Endurance ( )></p>
           </div>
           <div class="vol"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
-            <input v-model.number="stats" type="number" class="stat-input input-small" />
+            <input v-model.number="stats.vol" type="number" class="stat-input input-small" />
             <p class="edo">Volonté ( )></p>
           </div>
           <div class="agi"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
-
-            <input v-model.number="stats" type="number" class="stat-input input-small" />
+            <input v-model.number="stats.agi" type="number" class="stat-input input-small" />
             <p class="edo">Agilité ( )></p>
           </div>
           <div class="intel"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
-            <input v-model.number="stats" type="number" class="stat-input input-small" />
+            <input v-model.number="stats.intel" type="number" class="stat-input input-small" />
             <p class="edo">Intelligence ( )></p>
           </div>
           <div class="style"><img class="stats-cadre" src="@/assets/cadre.svg" alt="">
-            <input v-model.number="stats" type="number" class="stat-input input-small" />
+            <input v-model.number="stats.style" type="number" class="stat-input input-small" />
             <p class="edo">Style ( )></p>
           </div>
         </div>
@@ -206,7 +212,8 @@
               <line v-if="secondSkill" x1="3mm" y1="0" x2="0" y2="3mm" stroke="black" stroke-width="2" />
             </svg>
             <p class="skill-title">{{ currentPlaybook?.secondSkillTitle }}</p>
-            <div :class="'skill '+ selectedPlaybook.value+'-second-skill'" v-html="currentPlaybook?.secondSkillContent">
+            <div :class="'skill ' + selectedPlaybook.value + '-second-skill'"
+              v-html="currentPlaybook?.secondSkillContent">
             </div>
           </div>
           <div class="third-skill" v-on:click="thirdSkill = !thirdSkill">
@@ -264,17 +271,17 @@
     </div>
   </form>
   <div class="footer">
-    <Message>Message Content</Message>
-    <Button label="Sauvegarder" class="p-button-primary" @click="exportPdf" />
+    <Message severity="error" class="message" v-if="error">{{ errorMessage }}</Message>
+    <Button label="Sauvegarder" class="p-button-primary submit" @click="exportPdf" />
   </div>
 </template>
 
 <script>
 import { Button } from "primevue";
 import html2pdf from "html2pdf.js";
-import Dropdown from 'primevue/dropdown';
+import Select from 'primevue/select';
 import playbooksDataConfig from '../config/playbooks.json';
-import Message from "primevue";
+import Message from "primevue/message";
 export default {
   name: 'CharacterFormular',
   props: {
@@ -287,21 +294,6 @@ export default {
       character: {
         name: "",
         origin: "",
-        exclusiveManeuvers: "",
-        stats: "",
-        injuries: "",
-        heat: 0,
-        emotions: {
-          anger: 0,
-          joy: 0,
-          fear: 0,
-          serenity: 0,
-          sadness: 0,
-          surprise: 0,
-        },
-        skills: "",
-        techniques: "",
-        inventory: "",
       },
       isDropdownOpen: false,
       imageSrc: null,
@@ -323,7 +315,18 @@ export default {
       firstSkill: false,
       secondSkill: false,
       thirdSkill: false,
-      format : false,
+      format: false,
+      error: false,
+      errorMessage: '',
+      stats: {
+        agi: "",
+        endu: "",
+        force: "",
+        intel: "",
+        style: "",
+        vol: ""
+      },
+      totalStats: 0
     };
   },
   computed: {
@@ -333,21 +336,29 @@ export default {
   },
   components: {
     Button,
-    Dropdown,
+    Select,
     Message
   },
   methods: {
     exportPdf() {
+      if (this.name == undefined || this.origin == undefined) {
+        this.error = true;
+        this.errorMessage = "Veuillez renseigner le nom et l'origine de votre personnage."
+        return null
+      }
+      if (this.imageSrc == null) {
+        this.error = true;
+        this.errorMessage = "Veuillez ajouter une image à votre fiche personnage."
+        return null
+      }
+      this.error = false;
       const element = document.getElementById("export-content");
-      if(this.name == "")
-          this.name = this.selectedPlaybook.label;
       const options = {
-        margin: [0, 0, 0, 0], // Ajoute une marge de 10mm
-        filename: this.name + ".pdf",
+        margin: [0, 0, 0, 0],
         image: { type: "jpeg", quality: 1 },
         html2canvas: {
-          scale: 5, // Augmente la résolution pour des SVG clairs
-          useCORS: true, // Gère les images externes si nécessaire
+          scale: 5,
+          useCORS: true,
         },
         jsPDF: {
           unit: "mm",
@@ -355,12 +366,12 @@ export default {
           orientation: "portrait",
         },
       };
-      html2pdf().set(options).from(element).toPdf().get('pdf').then(function (pdf) {
+      html2pdf().set(options).from(element).toPdf().get('pdf').then((pdf) => {
         pdf.deletePage(3);
-        pdf.save(this.name + ".pdf",options);
+        pdf.save(this.name + ".pdf");
       });
     },
-    // Fonction pour gérer le téléchargement d'une image
+
     handleImageUpload(event) {
       const file = event.target.files[0];
       if (file) {
@@ -387,7 +398,6 @@ export default {
       this.$refs.fileInput.click();
     },
     openDropdown() {
-      // Ouvre le menu Dropdown via sa référence
       this.$refs.dropdown.show();
     }
   },
@@ -402,9 +412,54 @@ export default {
         this.level = 10;
       }
     },
-    stats(value) {
+    "stats.agi"(value) {
+      if (value > 3) { // exemple de condition
+        this.stats.agi = 3;
+      }
+      if (value < -1) {
+          this.stats.agi = -1;
+        }
+      
+    },
+    "stats.endu"(value) {
       if (value > 3) {
-        this.stats = 3;
+        this.stats.endu = 3;
+      }
+      if (value < -1) {
+        this.stats.endu = -1;
+      }
+
+    },
+    "stats.force"(value) {
+      if (value > 3) {
+        this.stats.force = 3;
+      }
+      if (value < -1) {
+        this.stats.force = -1;
+      }
+    },
+    "stats.intel"(value) {
+      if (value > 3) {
+        this.stats.intel = 3;
+      }
+      if (value < -1) {
+        this.stats.intel = -1;
+      }
+    },
+    "stats.style"(value) {
+      if (value > 3) {
+        this.stats.style = 3;
+      }
+      if (value < -1) {
+        this.stats.style = -1;
+      }
+    },
+    "stats.vol"(value) {
+      if (value > 3) {
+        this.stats.vol = 3;
+      }
+      if (value < -1) {
+        this.stats.vol = -1;
       }
     },
   }
@@ -427,15 +482,11 @@ form {
 
 .content {
   width: 210mm;
-  /* Largeur d'une page A4 */
   height: 297mm;
-  /* Hauteur d'une page A4 */
   border: 2px solid black;
   position: relative;
   box-sizing: border-box;
-  /* Inclut les bordures dans les dimensions */
   background-color: white;
-  /* Fond blanc pour le PDF */
 }
 
 .cadre,
@@ -446,7 +497,6 @@ form {
   top: 50px;
   left: 35px;
   cursor: pointer;
-  /* Changer le curseur pour indiquer que c'est cliquable */
 }
 
 .cadre_image {
@@ -520,7 +570,6 @@ svg {
   height: 225px;
   overflow: hidden;
   border-radius: 50%;
-  /* Crée un cadre rond */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -531,7 +580,6 @@ svg {
 .uploaded-image {
   height: 100%;
   object-fit: cover;
-  /* Assure que l'image couvre toute la zone sans déformation */
 }
 
 .placeholder-text {
@@ -543,11 +591,8 @@ svg {
 #export-content {
   position: relative;
   max-width: 210mm;
-  /* Largeur pour un PDF A4 en portrait */
   height: auto;
   aspect-ratio: 210 / 297;
-  /* Maintient le ratio A4 */
-  /* Empêche les débordements */
 }
 
 .playbook-icon {
@@ -600,15 +645,12 @@ svg {
   left: 0;
   z-index: 2;
   height: 100%;
-  /* Pour correspondre à la hauteur du parent */
   border: none;
   outline: none;
   background: transparent;
   font-family: Edo;
   padding: 10px 40px;
-  /* Ajustez pour aligner avec le contenu du SVG */
   font-size: 16px;
-  /* Ajustez selon vos besoins */
 }
 
 .stat-input {
@@ -932,14 +974,15 @@ svg {
   width: 95%;
 }
 
-
-.footer{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.ouvrier-second-skill {
+  font-size: 14px;
 }
 
-.ouvrier-second-skill{
-  font-size: 14px;
+header {
+  max-width: 300mm;
+}
+
+.message {
+  text-align: left;
 }
 </style>
